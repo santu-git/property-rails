@@ -1,0 +1,33 @@
+<h1>Assets <%= link_to 'Add New Asset', new_admin_asset_path, class: 'btn btn-primary pull-right' %></h1>
+<p>Shown below are the assets you've uploaded</p>
+<table class="table table-bordered">
+  <tr>
+    <th width="5%">ID</th>
+    <th width="4%" style="text-align:center">Icon</td>
+    <th>Listing</th>
+    <th width="10%">Status</th>
+    <th width="20%">Actions</th>
+  </tr>
+  <% if @assets.each do |asset| %>
+    <tr>
+      <td><%= asset.id %></td>
+      <td style="text-align:center"><a href="<%= asset.upload.url %>" target="_blank"><i class="<%= paperclip_icon_url(asset.upload) %>" style="font-size:24px"></i></a></td>
+      <td><%= asset.listing.display_address %> (<a href="<%= edit_admin_listing_path(asset.listing) %>">Listing ID: <%= asset.listing.id %></a>)</td>
+      <td><%= asset.status === 1 ? 'Active' : 'Inactive' %></td>
+      <td>
+        <table width="100%">
+          <tr>
+            <td width="45%"><%= link_to 'Update', edit_admin_asset_path(asset), class: 'btn btn-primary btn-block' %></td>
+            <td width="10%"></td>
+            <td width="45%"><%= link_to 'Destroy', admin_asset_path(asset), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  <% end.empty? %>
+    <tr>
+      <td colspan="5">You have no assets</td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @assets, renderer: BootstrapPagination::Rails %>

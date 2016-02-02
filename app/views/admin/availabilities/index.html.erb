@@ -1,0 +1,33 @@
+<h1>Availabilities <%= link_to_if(is_admin?, 'Add New Availability', new_admin_availability_path, class: 'btn btn-primary pull-right'){} %></h1>
+<p>Shown below are the availabilities that can be assigned to a property listing.</p>
+<table class="table table-bordered">
+  <tr>
+    <th width="5%">ID</th>
+    <th>Value</th>
+    <% if is_admin? %>
+      <th width="20%">Action</th>
+    <% end %>
+  </tr>
+  <% if @availabilities.each do |availability| %>
+    <tr>
+      <td><%= availability.id %></td>
+      <td><%= availability.value %></td>
+      <% if is_admin? %>
+        <td>
+          <table width="100%">
+            <tr>
+              <td width="45%"><%= link_to 'Update', edit_admin_availability_path(availability), class: 'btn btn-primary btn-block' %></td>
+              <td width="10%"></td>
+              <td width="45%"><%= link_to 'Destroy', admin_availability_path(availability), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %></td>
+            </tr>
+          </table>
+        </td>
+      <% end %>
+    </tr>
+  <% end.empty? %>
+    <tr>
+      <td colspan="3">You have no availabilities</td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @availabilities, renderer: BootstrapPagination::Rails %>

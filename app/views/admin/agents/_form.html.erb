@@ -1,0 +1,45 @@
+<%= form_for [:admin, @agent] do |f| %>
+  <% if @agent.errors.any? %>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <p><strong>Warning!</strong> <%= pluralize(@agent.errors.count, "error") %> prohibited this agent from being saved</p>
+      <ul>
+        <% @agent.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="well">
+    <h2>Agent Name</h2>
+    <p>What is the name of your agent?</p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <h2>Visibility</h2>
+    <p>The agents visibility</p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group all">
+          <%= f.select 'status', options_for_select([['Active',1],['Inactive',0]], selected_key = f.object.status), {}, {:class => 'form-control'} %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.submit class:'btn btn-primary' %>
+      </div>
+      <div class="col-md-6">
+
+      </div>
+    </div>
+  </div>
+<% end %>

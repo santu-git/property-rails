@@ -1,0 +1,68 @@
+<%= form_for [:admin, @asset] do |f| %>
+  <% if @asset.errors.any? %>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <p><strong>Warning - <%= pluralize(@asset.errors.count, "error") %> prohibited this data from being saved... </strong></p>
+      <ul>
+        <% @asset.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="well">
+    <h2>Listing</h2>
+    <p>What listing does this asset belong to?</p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.select(:listing_id, options_for_select(Listing.all.map{|s|[s.display_address, s.id]}, selected_key = f.object.listing_id), {}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <h2>Type</h2>
+    <p>What type of media is this?</p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.select(:media_type_id, options_for_select(MediaType.all.map{|s|[s.value, s.id]}, selected_key = f.object.media_type_id), {}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <h2>File</h2>
+    <p>Select the file to use for this media from your local computer</p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.file_field :upload %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <h2>Visibility</h2>
+    <p>The media visibility</p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :status %>
+          <%= f.select 'status', options_for_select([['Active',1],['Inactive',0]], selected_key = f.object.status), {}, {:class => 'form-control'} %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.submit class:'btn btn-primary' %>
+      </div>
+      <div class="col-md-6">
+
+      </div>
+    </div>
+  </div>
+<% end %>

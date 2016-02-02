@@ -1,0 +1,33 @@
+<h1>Branches <%= link_to 'Add New Branch', new_admin_branch_path, class: 'btn btn-primary pull-right' %></h1>
+<p>Shown below are the branches that have been created</p>
+<table class="table table-bordered">
+  <tr>
+    <th width="5%">ID</th>
+    <th>Name</th>
+    <th>Address</th>
+    <th width="10%">Status</th>
+    <th width="20%">Action</th>
+  </tr>
+  <% if @branches.each do |branch| %>
+    <tr>
+      <td><%= branch.id %></td>
+      <td><%= branch.name %></td>
+      <td><%= branch.display_address %></td>
+      <td><%= branch.status === 1 ? 'Active' : 'Inactive' %></td>
+      <td>
+        <table width="100%">
+          <tr>
+            <td width="45%"><%= link_to 'Update', edit_admin_branch_path(branch), class: 'btn btn-primary btn-block' %></td>
+            <td width="10%"></td>
+            <td width="45%"><%= link_to 'Destroy', admin_branch_path(branch), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  <% end.empty? %>
+    <tr>
+      <td colspan="5">You have no branches</td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @branches, renderer: BootstrapPagination::Rails %>

@@ -1,0 +1,2 @@
+module Admin::SaleTypesHelper
+end

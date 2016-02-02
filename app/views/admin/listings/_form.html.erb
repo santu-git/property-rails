@@ -1,0 +1,392 @@
+<%= form_for [:admin, @listing] do |f| %>
+  <input id="listing_id" type="hidden" value="<%=@listing.id%>">
+  <% if @listing.errors.any? %>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <p><strong>Warning - <%= pluralize(@listing.errors.count, "error") %> prohibited this data from being saved... </strong></p>
+      <ul>
+        <% @listing.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="well">
+    <h2>Listing Type</h2>
+    <p>What type of listing is this?</p>
+    <div class="row">
+      <div class="col-md-12 all">
+        <div class="form-group">
+          <%= f.select(:department_id, options_for_select(Department.all.map{|s|[s.value, s.id]}, selected_key = f.object.department_id), {}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <h2>Agent &amp; Branch</h2>
+    <p>Which agent and branch will be looking after this listing?</p>
+    <div class="row">
+      <div class="col-md-12 all">
+        <div class="form-group">
+          <%= f.label :agent_id %><br>
+          <%= f.select(:agent_id, options_for_select(Agent.where("user_id = ?", current_user.id).map{|s|[s.name, s.id]}, selected_key = f.object.agent_id), {}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 all">
+        <div class="form-group">
+          <%= f.label :branch_id %><br>
+          <%= f.select(:branch_id, '', {}, {:class => 'form-control'}) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <h2>Categorization</h2>
+    <p>Choose the categories and options for the listing</p>
+    <div class="row">
+      <div class="col-md-4 all">
+        <div class="form-group">
+          <%= f.label :availability_id %><br>
+          <%= f.select(:availability_id, options_for_select(Availability.all.map{|s|[s.value, s.id]}, selected_key = f.object.availability_id), {:include_blank => 'Choose availability...'}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+      <div class="col-md-4 all">
+        <div class="form-group">
+          <%= f.label :style_id %><br>
+          <%= f.select(:style_id, options_for_select(Style.all.map{|s|[s.value, s.id]}, selected_key = f.object.style_id), {:include_blank => 'Choose style...'}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+      <div class="col-md-4 all">
+        <div class="form-group">
+          <%= f.label :type_id %><br>
+          <%= f.select(:type_id, options_for_select(Type.all.map{|s|[s.value, s.id]}, selected_key = f.object.type_id), {:include_blank => 'Choose type...'}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+      <div class="col-md-4 all">
+        <div class="form-group">
+          <%= f.label :age_id %><br>
+          <%= f.select(:age_id, options_for_select(Age.all.map{|s|[s.value, s.id]}, selected_key = f.object.age_id), {:include_blank => 'Choose age...'}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+      <div class="col-md-4 for-sale">
+        <div class="form-group">
+          <%= f.label :sale_type_id %><br>
+          <%= f.select(:sale_type_id, options_for_select(SaleType.all.map{|s|[s.value, s.id]}, selected_key = f.object.sale_type_id), {:include_blank => 'Choose sale type...'}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <h2>Address</h2>
+    <p>Enter the address for the property</p>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group all">
+          <%= f.label :address_1 %><br>
+          <%= f.text_field :address_1, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :address_3 %><br>
+          <%= f.text_field :address_3, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :town_city %><br>
+          <%= f.text_field :town_city, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :postcode %><br>
+          <%= f.text_field :postcode, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group all">
+          <%= f.label :address_2 %><br>
+          <%= f.text_field :address_2, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :address_4 %><br>
+          <%= f.text_field :address_4, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :county %><br>
+          <%= f.text_field :county, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :country %><br>
+          <%= f.text_field :country, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group all">
+          <%= f.label :display_address %><br>
+          <%= f.text_field :display_address, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group all">
+          <%= f.label :latitude %><br>
+          <%= f.text_field :latitude, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group all">
+          <%= f.label :longitude %><br>
+          <%= f.text_field :longitude, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <a id="listing_lookup_postcode" href="#" class="btn btn-primary btn-block">Lookup Location from Postcode</a>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <h2>Details</h2>
+    <p>Enter details and descriptions for the listing</p>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group all">
+          <%= f.label :bedrooms %><br>
+          <%= f.text_field :bedrooms, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group all">
+          <%= f.label :bathrooms %><br>
+          <%= f.text_field :bathrooms, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group all">
+          <%= f.label :ensuites %><br>
+          <%= f.text_field :ensuites, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group all">
+          <%= f.label :receptions %><br>
+          <%= f.text_field :receptions, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group all">
+          <%= f.label :kitchens %><br>
+          <%= f.text_field :kitchens, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group all">
+          <%= f.label :summary %><br>
+          <%= f.text_area :summary, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group all">
+          <%= f.label :description %><br>
+          <%= f.text_area :description, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well for-sale">
+    <h2>Pricing</h2>
+    <p>The sale pricing details for the listing</p>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :price %><br>
+          <%= f.text_field :price, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :qualifier_id %><br>
+          <%= f.select(:qualifier_id, options_for_select(Qualifier.all.map{|s|[s.value, s.id]}, selected_key = f.object.qualifier_id), {:include_blank => 'Choose qualifier...'}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :tenure_id %><br>
+          <%= f.select(:tenure_id, options_for_select(Tenure.all.map{|s|[s.value, s.id]}, selected_key = f.object.tenure_id), {:include_blank => 'Choose tenure...'}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :estimated_rental_income %><br>
+          <%= f.text_field :estimated_rental_income, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :price_on_application %>
+          <%= f.select 'price_on_application', options_for_select([['Yes',1],['No',0]], selected_key = f.object.price_on_application), {}, {:class => 'form-control'} %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well to-let">
+    <h2>Pricing</h2>
+    <p>The letting pricing details for listing</p>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :rent %><br>
+          <%= f.text_field :rent, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :frequency_id %><br>
+          <%= f.select(:frequency_id, options_for_select(Frequency.all.map{|s|[s.value, s.id]}, selected_key = f.object.frequency_id), {:include_blank => 'Choose frequency...'}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :rent_on_application %>
+          <%= f.select 'rent_on_application', options_for_select([['Yes',1],['No',0]], selected_key = f.object.rent_on_application), {}, {:class => 'form-control'} %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :rental_detail %><br>
+          <%= f.text_area :rental_detail, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if @listing.persisted? %>
+    <div class="well">
+      <h2>Features</h2>
+      <p>Listing features are shown below</p>
+      <table class="table table-bordered">
+        <tr>
+          <th width="5%">ID</th>
+          <th>Value</th>
+          <th width="20%">Actions</th>
+        </tr>
+        <% if @features.each do |feature| %>
+          <tr>
+            <td><%= feature.id %></td>
+            <td><%= feature.value %></td>
+            <td><%= link_to 'Destroy', admin_feature_path(feature), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %></td>
+          </tr>
+        <% end.empty? %>
+          <tr>
+            <td colspan="4">You have no features</td>
+          </tr>
+        <% end %>
+      </table>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <input id="listing_feature_value" type="text" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <a id="listing_add_feature" href="#" class="btn btn-primary btn-block">Add Feature</a>
+        </div>
+      </div>
+    </div>
+    <div class="well">
+      <h2>Flags</h2>
+      <p>Listing flags are shown below</p>
+      <table class="table table-bordered">
+        <tr>
+          <th width="5%">ID</th>
+          <th>Value</th>
+          <th width="20%">Actions</th>
+        </tr>
+        <% if @flags.each do |flag| %>
+          <tr>
+            <td><%= flag.id %></td>
+            <td><%= flag.value %></td>
+            <td><%= link_to 'Destroy', admin_flag_path(flag), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %></td>
+          </tr>
+        <% end.empty? %>
+          <tr>
+            <td colspan="4">You have no flags</td>
+          </tr>
+        <% end %>
+      </table>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <input id="listing_flag_value" type="text" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <a id="listing_add_flag" href="#" class="btn btn-primary btn-block">Add Flag</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="well">
+    <h2>Miscellaneous</h2>
+    <p>Miscellaneous settings for listing</p>
+    <div class="row">
+      <div class="col-md-4 all">
+        <div class="form-group">
+          <%= f.label :featured %>
+          <%= f.select 'featured', options_for_select([['Yes',1],['No',0]], selected_key = f.object.featured), {}, {:class => 'form-control'} %>
+        </div>
+      </div>
+      <div class="col-md-4 for-sale">
+        <div class="form-group">
+          <%= f.label :development %>
+          <%= f.select 'development', options_for_select([['Yes',1],['No',0]], selected_key = f.object.development), {}, {:class => 'form-control'} %>
+        </div>
+      </div>
+      <div class="col-md-4 for-sale">
+        <div class="form-group">
+          <%= f.label :investment %>
+          <%= f.select 'investment', options_for_select([['Yes',1],['No',0]], selected_key = f.object.investment), {}, {:class => 'form-control'} %>
+        </div>
+      </div>
+      <div class="col-md-4 to-let">
+        <div class="form-group">
+          <%= f.label :student %>
+          <%= f.select 'student', options_for_select([['Yes',true],['No',false]], selected_key = f.object.student), {}, {:class => 'form-control'} %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <h2>Visibility</h2>
+    <p>The listing visibility</p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group all">
+          <%= f.label :status %>
+          <%= f.select 'status', options_for_select([['Active',1],['Inactive',0]], selected_key = f.object.status), {}, {:class => 'form-control'} %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.submit class:'btn btn-primary' %>
+      </div>
+      <div class="col-md-6">
+
+      </div>
+    </div>
+  </div>
+<% end %>

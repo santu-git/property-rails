@@ -1,0 +1,55 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Property Listing</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorization <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Ages', admin_ages_path %></li>
+              <li><%= link_to 'Availabilities', admin_availabilities_path %></li>
+              <li><%= link_to 'Departments', admin_departments_path %></li>
+              <li><%= link_to 'Frequencies', admin_frequencies_path %></li>
+              <li><%= link_to 'Media Types', admin_media_types_path %></li>
+              <li><%= link_to 'Sale Types', admin_sale_types_path %></li>
+              <li><%= link_to 'Qualifiers', admin_qualifiers_path %></li>
+              <li><%= link_to 'Styles', admin_styles_path %></li>
+              <li><%= link_to 'Tenures', admin_tenures_path %></li>
+              <li><%= link_to 'Types', admin_types_path %></li>
+            </ul>
+          </li>
+          <li><%= link_to 'Agents', admin_agents_path %></li>
+          <li><%= link_to 'Branches', admin_branches_path %></li>
+          <li><%= link_to 'Listings', admin_listings_path %></li>
+          <li><%= link_to 'Assets', admin_assets_path %></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+          <% if user_signed_in? %>
+            <ul class="dropdown-menu">
+              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+            </ul>
+          <% else %>
+            <ul class="dropdown-menu">
+              <li><%= link_to('Login', new_user_session_path) %></li>
+            </ul>
+          <% end %>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

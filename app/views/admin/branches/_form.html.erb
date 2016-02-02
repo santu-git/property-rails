@@ -1,0 +1,124 @@
+<%= form_for [:admin, @branch] do |f| %>
+  <% if @branch.errors.any? %>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <p><strong>Warning - <%= pluralize(@branch.errors.count, "error") %> prohibited this data from being saved... </strong></p>
+      <ul>
+        <% @branch.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="well">
+    <h2>Agency</h2>
+    <p>Which of your agencies does this belong to?</p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.select :agent_id, options_for_select(Agent.where('user_id = ?', current_user.id).map{|s|[s.name, s.id]}, f.object.agent_id), {}, { :class => 'form-control' } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="well">
+    <h2>Address</h2>
+    <p>Enter the name and address details for the branch</p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group all">
+          <%= f.label :address_1 %><br>
+          <%= f.text_field :address_1, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :address_3 %><br>
+          <%= f.text_field :address_3, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :town_city %><br>
+          <%= f.text_field :town_city, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :postcode %><br>
+          <%= f.text_field :postcode, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group all">
+          <%= f.label :address_2 %><br>
+          <%= f.text_field :address_2, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :address_4 %><br>
+          <%= f.text_field :address_4, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :county %><br>
+          <%= f.text_field :county, class: 'form-control' %>
+        </div>
+        <div class="form-group all">
+          <%= f.label :country %><br>
+          <%= f.text_field :country, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group all">
+          <%= f.label :display_address %><br>
+          <%= f.text_field :display_address, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group all">
+          <%= f.label :latitude %><br>
+          <%= f.text_field :latitude, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group all">
+          <%= f.label :longitude %><br>
+          <%= f.text_field :longitude, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <a id="branch_lookup_postcode" href="#" class="btn btn-primary btn-block">Lookup Location from Postcode</a>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <h2>Visibility</h2>
+    <p>The branch visibility</p>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group all">
+          <%= f.label :status %>
+          <%= f.select 'status', options_for_select([['Active',1],['Inactive',0]], selected_key = f.object.status), {}, {:class => 'form-control'} %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.submit class:'btn btn-primary' %>
+      </div>
+      <div class="col-md-6">
+
+      </div>
+    </div>
+  </div>
+<% end %>

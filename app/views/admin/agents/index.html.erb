@@ -1,0 +1,31 @@
+<h1>Agents <%= link_to 'Add New Agent', new_admin_agent_path, class: 'btn btn-primary pull-right' %></h1>
+<p>Shown below are the agents that have been created for you.</p>
+<table class="table table-bordered">
+  <tr>
+    <th width="5%">ID</th>
+    <th>Name</th>
+    <th width="10%">Status</th>
+    <th width="20%">Action</th>
+  </tr>
+  <% if @agents.each do |agent| %>
+    <tr>
+      <td><%= agent.id %></td>
+      <td><%= agent.name %></td>
+      <td><%= agent.status === 1 ? 'Active' : 'Inactive' %></td>
+      <td>
+        <table width="100%">
+          <tr>
+            <td width="45%"><%= link_to 'Update', edit_admin_agent_path(agent), class: 'btn btn-primary btn-block' %></td>
+            <td width="10%"></td>
+            <td width="45%"><%= link_to 'Destroy', admin_agent_path(agent), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  <% end.empty? %>
+    <tr>
+      <td colspan="4">You have no agents</td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @agents, renderer: BootstrapPagination::Rails %>
