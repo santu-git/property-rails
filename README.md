@@ -18,6 +18,7 @@ Uses the following gems:
 * paperclip
 * aws-sdk
 * font-awesome-rails
+* cocoon
 
 Will need a .env file created in the root of the application with the following keys:
 
