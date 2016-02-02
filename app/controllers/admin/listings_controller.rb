@@ -7,8 +7,6 @@ class Admin::ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
-    10.times { @listing.features.build }
-    10.times { @listing.flags.build }
   end
 
   def create
