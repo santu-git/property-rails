@@ -15,7 +15,7 @@
     <p>What is the name of your agent?</p>
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
+        <div class="form-group-last">
           <%= f.text_field :name, class: 'form-control' %>
         </div>
       </div>
@@ -26,7 +26,7 @@
     <p>The agents visibility</p>
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group all">
+        <div class="form-group-last">
           <%= f.select 'status', options_for_select([['Active',1],['Inactive',0]], selected_key = f.object.status), {}, {:class => 'form-control'} %>
         </div>
       </div>

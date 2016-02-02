@@ -3,17 +3,16 @@ class Admin::MediaTypesController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
   def index
-    @mediatypes = MediaType.all.paginate(:page => params[:page], :per_page => 10)
-  end
-
-  def show
-    @mediatype = MediaType.find(params[:id])
+    @mediatypes = MediaType.all.paginate(
+      :page => params[:page],
+      :per_page => 10
+    )
   end
 
   def create
     @mediatype = MediaType.new(media_type_params)
     if @mediatype.save
-      flash[:notice] = 'Media type successfully added'
+      flash[:notice] = 'Media type successfully created'
       redirect_to admin_media_types_path
     else
       render 'new'
@@ -30,7 +29,7 @@ class Admin::MediaTypesController < ApplicationController
 
   def update
     @mediatype = MediaType.find(params[:id])
-    if @mediatype.update(media_type_params)
+    if @mediatype && @mediatype.update(media_type_params)
       flash[:notice] = 'Media type successfully updated'
       redirect_to admin_media_types_path
     else
@@ -40,8 +39,11 @@ class Admin::MediaTypesController < ApplicationController
 
   def destroy
     @mediatype = MediaType.find(params[:id])
-    @mediatype.destroy
-    flash[:notice] = 'Media type successfully removed'          
+    if @mediatype && @mediatype.destroy
+      flash[:notice] = 'Media type successfully removed'
+    else
+      flash[:alert] = 'Unable to remove media type'
+    end
     redirect_to admin_media_types_path
   end
 

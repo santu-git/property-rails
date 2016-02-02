@@ -2,11 +2,10 @@ class Admin::AgentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @agents = Agent.where('user_id = ?', current_user.id).paginate(:page => params[:page], :per_page => 10)
-  end
-
-  def show
-    @agent = Agent.where('id = ? and user_id = ?', params[:id], current_user.id).first
+    @agents = current_user.agents.paginate(
+      :page => params[:page],
+      :per_page => 10
+    )
   end
 
   def new
@@ -17,7 +16,7 @@ class Admin::AgentsController < ApplicationController
     @agent = Agent.new(agent_params)
     @agent.user_id = current_user.id
     if @agent.save
-      flash[:notice] = 'Agent details successfully added'
+      flash[:notice] = 'Agent successfully created'
       redirect_to admin_agents_path
     else
       render 'new'
@@ -25,13 +24,13 @@ class Admin::AgentsController < ApplicationController
   end
 
   def edit
-    @agent = Agent.where('id = ? and user_id = ?', params[:id], current_user.id).first
+    @agent = current_user.agents.find_by_id(params[:id])
   end
 
   def update
-    @agent = Agent.where('id = ? and user_id = ?', params[:id], current_user.id).first
-    if @agent.update(agent_params)
-      flash[:notice] = 'Agent details successfully updated'
+    @agent = current_user.agents.find_by_id(params[:id])
+    if @agent && @agent.update(agent_params)
+      flash[:notice] = 'Agent successfully updated'
       redirect_to admin_agents_path
     else
       render 'edit'
@@ -39,9 +38,12 @@ class Admin::AgentsController < ApplicationController
   end
 
   def destroy
-    @agent = Agent.where('id = ? and user_id = ?', params[:id], current_user.id).first
-    @agent.destroy
-    flash[:notice] = 'Agent successfully removed'
+    @agent = current_user.agents.find_by_id(params[:id])
+    if @agent && @agent.destroy
+      flash[:notice] = 'Agent successfully removed'
+    else
+      flash[:alert] = 'Unable to remove agent'
+    end
     redirect_to admin_agents_path
   end
 

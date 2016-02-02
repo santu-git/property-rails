@@ -3,17 +3,16 @@ class Admin::TenuresController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
   def index
-    @tenures = Tenure.all.paginate(:page => params[:page], :per_page => 10)
-  end
-
-  def show
-    @tenure = Tenure.find(params[:id])
+    @tenures = Tenure.all.paginate(
+      :page => params[:page],
+      :per_page => 10
+    )
   end
 
   def create
     @tenure = Tenure.new(tenure_params)
     if @tenure.save
-      flash[:notice] = 'Tenure successfully added'
+      flash[:notice] = 'Tenure successfully created'
       redirect_to admin_tenures_path
     else
       render 'new'
@@ -30,7 +29,7 @@ class Admin::TenuresController < ApplicationController
 
   def update
     @tenure = Tenure.find(params[:id])
-    if @tenure.update(tenure_params)
+    if @tenure && @tenure.update(tenure_params)
       flash[:notice] = 'Tenure successfully updated'
       redirect_to admin_tenures_path
     else
@@ -40,8 +39,11 @@ class Admin::TenuresController < ApplicationController
 
   def destroy
     @tenure = Tenure.find(params[:id])
-    @tenure.destroy
-    flash[:notice] = 'Tenure successfully removed'          
+    if @tenure && @tenure.destroy
+      flash[:notice] = 'Tenure successfully removed'
+    else
+      flash[:alert] = 'Unable to remove tenure'
+    end
     redirect_to admin_tenures_path
   end
 

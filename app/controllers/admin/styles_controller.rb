@@ -3,17 +3,16 @@ class Admin::StylesController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
   def index
-    @styles = Style.all.paginate(:page => params[:page], :per_page => 10)
-  end
-
-  def show
-    @style = Style.find(params[:id])
+    @styles = Style.all.paginate(
+      :page => params[:page],
+      :per_page => 10
+    )
   end
 
   def create
     @style = Style.new(style_params)
     if @style.save
-      flash[:notice] = 'Style successfully added'
+      flash[:notice] = 'Style successfully created'
       redirect_to admin_styles_path
     else
       render 'new'
@@ -30,7 +29,7 @@ class Admin::StylesController < ApplicationController
 
   def update
     @style = Style.find(params[:id])
-    if @style.update(style_params)
+    if @style && @style.update(style_params)
       flash[:notice] = 'Style successfully updated'
       redirect_to admin_styles_path
     else
@@ -40,8 +39,11 @@ class Admin::StylesController < ApplicationController
 
   def destroy
     @style = Style.find(params[:id])
-    @style.destroy
-    flash[:notice] = 'Style successfully removed'          
+    if @style && @style.destroy
+      flash[:notice] = 'Style successfully removed'
+    else
+      flash[:alert] = 'Unable to remove style'
+    end
     redirect_to admin_styles_path
   end
 

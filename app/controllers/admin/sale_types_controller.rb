@@ -3,17 +3,16 @@ class Admin::SaleTypesController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
   def index
-    @saletypes = SaleType.all.paginate(:page => params[:page], :per_page => 10)
-  end
-
-  def show
-    @saletype = SaleType.find(params[:id])
+    @saletypes = SaleType.all.paginate(
+      :page => params[:page],
+      :per_page => 10
+    )
   end
 
   def create
     @saletype = SaleType.new(sale_type_params)
     if @saletype.save
-      flash[:notice] = 'Sale type successfully added'
+      flash[:notice] = 'Sale type successfully created'
       redirect_to admin_sale_types_path
     else
       render 'new'
@@ -30,7 +29,7 @@ class Admin::SaleTypesController < ApplicationController
 
   def update
     @saletype = SaleType.find(params[:id])
-    if @saletype.update(sale_type_params)
+    if @saletype && @saletype.update(sale_type_params)
       flash[:notice] = 'Sale type successfully updated'
       redirect_to admin_sale_types_path
     else
@@ -39,9 +38,12 @@ class Admin::SaleTypesController < ApplicationController
   end
 
   def destroy
-    @style = SaleType.find(params[:id])
-    @style.destroy
-    flash[:notice] = 'Sale type successfully removed'          
+    @saletype = SaleType.find(params[:id])
+    if @saletype && @saletype.destroy
+      flash[:notice] = 'Sale type successfully removed'
+    else
+      flash[:alert] = 'Unable to remove sale type'
+    end
     redirect_to admin_sale_types_path
   end
 

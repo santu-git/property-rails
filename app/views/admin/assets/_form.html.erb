@@ -15,8 +15,8 @@
     <p>What listing does this asset belong to?</p>
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
-          <%= f.select(:listing_id, options_for_select(Listing.all.map{|s|[s.display_address, s.id]}, selected_key = f.object.listing_id), {}, { :class => 'form-control' }) %>
+        <div class="form-group-last">
+          <%= f.select(:listing_id, options_for_select(Listing.joins(:agent).where('agents.user_id = ?', current_user.id).map{|s|[s.display_address, s.id]}, selected_key = f.object.listing_id), {}, { :class => 'form-control' }) %>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
     <p>What type of media is this?</p>
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
+        <div class="form-group-last">
           <%= f.select(:media_type_id, options_for_select(MediaType.all.map{|s|[s.value, s.id]}, selected_key = f.object.media_type_id), {}, { :class => 'form-control' }) %>
         </div>
       </div>
@@ -37,7 +37,7 @@
     <p>Select the file to use for this media from your local computer</p>
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
+        <div class="form-group-last">
           <%= f.file_field :upload %>
         </div>
       </div>
@@ -48,7 +48,7 @@
     <p>The media visibility</p>
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
+        <div class="form-group-last">
           <%= f.label :status %>
           <%= f.select 'status', options_for_select([['Active',1],['Inactive',0]], selected_key = f.object.status), {}, {:class => 'form-control'} %>
         </div>

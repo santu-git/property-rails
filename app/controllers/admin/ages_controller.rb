@@ -3,17 +3,16 @@ class Admin::AgesController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
   def index
-    @ages = Age.all.paginate(:page => params[:page], :per_page => 10)
-  end
-
-  def show
-    @age = Age.find(params[:id])
+    @ages = Age.all.paginate(
+      :page => params[:page],
+      :per_page => 10
+    )
   end
 
   def create
     @age = Age.new(age_params)
     if @age.save
-      flash[:notice] = 'Age successfully added'
+      flash[:notice] = 'Age successfully created'
       redirect_to admin_ages_path
     else
       render 'new'
@@ -40,8 +39,11 @@ class Admin::AgesController < ApplicationController
 
   def destroy
     @age = Age.find(params[:id])
-    @age.destroy
-    flash[:notice] = 'Agent successfully removed'
+    if @age && @age.destroy
+      flash[:notice] = 'Agent successfully removed'
+    else
+      flash[:alert] = 'Unable to remove age'
+    end
     redirect_to admin_ages_path
   end
 

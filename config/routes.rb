@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get 'geo/lookup'
     resources :ages, :availabilities, :departments, :frequencies, :media_types,
     :qualifiers, :styles, :tenures, :types, :sale_types, :agents, :branches,
-    :listings, :assets, :features, :flags
+    :listings, :assets
   end
 
   devise_for :users,

@@ -1,5 +1,4 @@
 <%= form_for [:admin, @listing] do |f| %>
-  <input id="listing_id" type="hidden" value="<%=@listing.id%>">
   <% if @listing.errors.any? %>
     <div class="alert alert-danger alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -16,7 +15,7 @@
     <p>What type of listing is this?</p>
     <div class="row">
       <div class="col-md-12 all">
-        <div class="form-group">
+        <div class="form-group-last">
           <%= f.select(:department_id, options_for_select(Department.all.map{|s|[s.value, s.id]}, selected_key = f.object.department_id), {}, { :class => 'form-control' }) %>
         </div>
       </div>
@@ -35,7 +34,7 @@
     </div>
     <div class="row">
       <div class="col-md-12 all">
-        <div class="form-group">
+        <div class="form-group-last">
           <%= f.label :branch_id %><br>
           <%= f.select(:branch_id, '', {}, {:class => 'form-control'}) %>
         </div>
@@ -65,13 +64,13 @@
         </div>
       </div>
       <div class="col-md-4 all">
-        <div class="form-group">
+        <div class="form-group-last">
           <%= f.label :age_id %><br>
           <%= f.select(:age_id, options_for_select(Age.all.map{|s|[s.value, s.id]}, selected_key = f.object.age_id), {:include_blank => 'Choose age...'}, { :class => 'form-control' }) %>
         </div>
       </div>
       <div class="col-md-4 for-sale">
-        <div class="form-group">
+        <div class="form-group-last">
           <%= f.label :sale_type_id %><br>
           <%= f.select(:sale_type_id, options_for_select(SaleType.all.map{|s|[s.value, s.id]}, selected_key = f.object.sale_type_id), {:include_blank => 'Choose sale type...'}, { :class => 'form-control' }) %>
         </div>
@@ -143,7 +142,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <a id="listing_lookup_postcode" href="#" class="btn btn-primary btn-block">Lookup Location from Postcode</a>
+        <a id="listing_lookup_postcode" href class="btn btn-primary btn-block">Lookup Location from Postcode</a>
       </div>
     </div>
   </div>
@@ -192,7 +191,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group all">
+        <div class="form-group-last all">
           <%= f.label :description %><br>
           <%= f.text_area :description, class: 'form-control' %>
         </div>
@@ -222,13 +221,13 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="form-group">
+        <div class="form-group-last">
           <%= f.label :estimated_rental_income %><br>
           <%= f.text_field :estimated_rental_income, class: 'form-control' %>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="form-group">
+        <div class="form-group-last">
           <%= f.label :price_on_application %>
           <%= f.select 'price_on_application', options_for_select([['Yes',1],['No',0]], selected_key = f.object.price_on_application), {}, {:class => 'form-control'} %>
         </div>
@@ -260,7 +259,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group">
+        <div class="form-group-last">
           <%= f.label :rental_detail %><br>
           <%= f.text_area :rental_detail, class: 'form-control' %>
         </div>
@@ -296,26 +295,26 @@
     <h2>Miscellaneous</h2>
     <p>Miscellaneous settings for listing</p>
     <div class="row">
-      <div class="col-md-4 all">
-        <div class="form-group">
+      <div class="col-md-3 all">
+        <div class="form-group-last">
           <%= f.label :featured %>
           <%= f.select 'featured', options_for_select([['Yes',1],['No',0]], selected_key = f.object.featured), {}, {:class => 'form-control'} %>
         </div>
       </div>
-      <div class="col-md-4 for-sale">
-        <div class="form-group">
+      <div class="col-md-3 for-sale">
+        <div class="form-group-last">
           <%= f.label :development %>
           <%= f.select 'development', options_for_select([['Yes',1],['No',0]], selected_key = f.object.development), {}, {:class => 'form-control'} %>
         </div>
       </div>
-      <div class="col-md-4 for-sale">
-        <div class="form-group">
+      <div class="col-md-3 for-sale">
+        <div class="form-group-last">
           <%= f.label :investment %>
           <%= f.select 'investment', options_for_select([['Yes',1],['No',0]], selected_key = f.object.investment), {}, {:class => 'form-control'} %>
         </div>
       </div>
-      <div class="col-md-4 to-let">
-        <div class="form-group">
+      <div class="col-md-3 to-let">
+        <div class="form-group-last">
           <%= f.label :student %>
           <%= f.select 'student', options_for_select([['Yes',true],['No',false]], selected_key = f.object.student), {}, {:class => 'form-control'} %>
         </div>
@@ -327,7 +326,7 @@
     <p>The listing visibility</p>
     <div class="row">
       <div class="col-md-12">
-        <div class="form-group all">
+        <div class="form-group-last all">
           <%= f.label :status %>
           <%= f.select 'status', options_for_select([['Active',1],['Inactive',0]], selected_key = f.object.status), {}, {:class => 'form-control'} %>
         </div>

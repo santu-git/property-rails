@@ -2,7 +2,12 @@ class Admin::ListingsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @listings = Listing.joins(:agent).where('agents.id = listings.agent_id').where('agents.user_id = ?', current_user.id).paginate(:page => params[:page], :per_page => 5)
+    @listings = Listing.joins(:agent).where(
+      'agents.user_id = ?', current_user.id
+    ).paginate(
+      :page => params[:page],
+      :per_page => 10
+    )
   end
 
   def new
@@ -10,9 +15,12 @@ class Admin::ListingsController < ApplicationController
   end
 
   def create
+    @agent = Agent.where(
+      'id = ? AND user_id = ?', listing_params[:agent_id], current_user.id
+    ).first
     @listing = Listing.new(listing_params)
-    if @listing.save
-      flash[:notice] = 'Listing successfully added'
+    if @agent && @listing.save
+      flash[:notice] = 'Listing successfully created'
       redirect_to edit_admin_listing_path(@listing)
     else
       render 'new'
@@ -20,14 +28,18 @@ class Admin::ListingsController < ApplicationController
   end
 
   def edit
-    @listing = Listing.joins(:agent).where('agents.id = listings.agent_id').where('agents.user_id = ?', current_user.id).where('listings.id = ?', params[:id]).first
-    @features = Feature.where('features.listing_id = ?', @listing.id)
-    @flags = Flag.where('flags.listing_id = ?', @listing.id)
+    @listing = Listing.joins(:agent).where(
+      'agents.user_id = ?', current_user.id
+    ).where('listings.id = ?', params[:id]).first
   end
 
   def update
-    @listing = Listing.joins(:agent).where('agents.id = listings.agent_id').where('agents.user_id = ?', current_user.id).where('listings.id = ?', params[:id]).first
-    if @listing.update(listing_params)
+    @listing = Listing.joins(:agent).where(
+      'agents.user_id = ?', current_user.id
+    ).where(
+      'listings.id = ?', params[:id]
+    ).first
+    if @listing && @listing.update(listing_params)
       flash[:notice] = 'Listing successfully updated'
       redirect_to admin_listings_path
     else
@@ -36,9 +48,16 @@ class Admin::ListingsController < ApplicationController
   end
 
   def destroy
-    @listing = Listing.find(params[:id])
-    @listing.destroy
-    flash[:notice] = 'Listing successfully removed'
+    @listing = Listing.joins(:agent).where(
+      'agents.user_id = ?', current_user.id
+    ).where(
+      'listings.id = ?', params[:id]
+    ).first
+    if @listing && @listing.destroy
+      flash[:notice] = 'Listing successfully removed'
+    else
+      flash[:alert] = 'Unable to remove listing'
+    end
     redirect_to admin_listings_path
   end
 

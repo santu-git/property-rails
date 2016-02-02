@@ -3,17 +3,16 @@ class Admin::DepartmentsController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
   def index
-    @departments = Department.all.paginate(:page => params[:page], :per_page => 10)
-  end
-
-  def show
-    @department = Department.find(params[:id])
+    @departments = Department.all.paginate(
+      :page => params[:page],
+      :per_page => 10
+    )
   end
 
   def create
     @department = Department.new(department_params)
     if @department.save
-      flash[:notice] = 'Department successfully added'
+      flash[:notice] = 'Department successfully created'
       redirect_to admin_departments_path
     else
       render 'new'
@@ -30,7 +29,7 @@ class Admin::DepartmentsController < ApplicationController
 
   def update
     @department = Department.find(params[:id])
-    if @department.update(department_params)
+    if @department && @department.update(department_params)
       flash[:notice] = 'Department successfully updated'
       redirect_to admin_departments_path
     else
@@ -40,8 +39,11 @@ class Admin::DepartmentsController < ApplicationController
 
   def destroy
     @department = Department.find(params[:id])
-    @department.destroy
-    flash[:notice] = 'Departmnt successfully removed'          
+    if @department && @department.destroy
+      flash[:notice] = 'Departmnt successfully removed'
+    else
+      flash[:alert] = 'Unable to remove department'
+    end
     redirect_to admin_departments_path
   end
 

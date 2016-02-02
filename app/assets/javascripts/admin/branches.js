@@ -1,5 +1,5 @@
-$(document).ready(function(){
-
+var ready;
+ready = function() {
   $('#branch_lookup_postcode').on('click',function(e){
     if ($('#branch_postcode').val().length >= 3){
       var url = '/admin/geo/lookup?postcode=' + $('#branch_postcode').val();
@@ -17,5 +17,7 @@ $(document).ready(function(){
     }
     e.preventDefault();
   });
+};
 
-});
+$(document).ready(ready);
+$(document).on('page:load', ready);

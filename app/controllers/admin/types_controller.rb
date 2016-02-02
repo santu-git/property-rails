@@ -3,17 +3,16 @@ class Admin::TypesController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
   def index
-    @types = Type.all.paginate(:page => params[:page], :per_page => 10)
-  end
-
-  def show
-    @type = Type.find(params[:id])
+    @types = Type.all.paginate(
+      :page => params[:page],
+      :per_page => 10
+    )
   end
 
   def create
     @type = Type.new(type_params)
     if @type.save
-      flash[:notice] = 'Type successfully added'
+      flash[:notice] = 'Type successfully created'
       redirect_to admin_types_path
     else
       render 'new'
@@ -30,7 +29,7 @@ class Admin::TypesController < ApplicationController
 
   def update
     @type = Type.find(params[:id])
-    if @type.update(type_params)
+    if @type && @type.update(type_params)
       flash[:notice] = 'Type successfully updated'
       redirect_to admin_types_path
     else
@@ -40,8 +39,11 @@ class Admin::TypesController < ApplicationController
 
   def destroy
     @type = Type.find(params[:id])
-    @type.destroy
-    flash[:notice] = 'Type successfully removed'          
+    if @type && @type.destroy
+      flash[:notice] = 'Type successfully removed'
+    else
+      flash[:alert] = 'Unable to remove type'
+    end
     redirect_to admin_types_path
   end
 
