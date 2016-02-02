@@ -8,16 +8,18 @@ ImageMagick
 
 Uses the following gems:
 
-dotenv-rails
-devise
-geocoder
-bootstrap-sass
-will_paginate-bootstrap
-will_paginate
-nilify_blanks
-paperclip
-aws-sdk
-font-awesome-rails
+<ul>
+<li>dotenv-rails</li>
+<li>devise</li>
+<li>geocoder</li>
+<li>bootstrap-sass</li>
+<li>will_paginate-bootstrap</li>
+<li>will_paginate</li>
+<li>nilify_blanks</li>
+<li>paperclip</li>
+<li>aws-sdk</li>
+<li>font-awesome-rails</li>
+</ul>
 
 Will need a .env file created in the root of the application with the following keys:
 
