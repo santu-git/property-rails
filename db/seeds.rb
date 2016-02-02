@@ -129,7 +129,7 @@ User.delete_all
 User.create([
   {
     id: 1,
-    email: 'robert.coster@btinternet.com',
+    email: 'bob1@example.com',
     admin: 1,
     password: 'internet',
     password_confirmation: 'internet',
@@ -137,7 +137,7 @@ User.create([
   },
   {
     id: 2,
-    email: 'rob@signalfire.co.uk',
+    email: 'bob2@example.com',
     admin: 0,
     password: 'internet',
     password_confirmation: 'internet',

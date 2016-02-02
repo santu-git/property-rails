@@ -1,28 +1,44 @@
-== README
+== Ruby on Rails Property / Real Estate Portal App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A work in progress to learn ruby on rails
 
-Things you may want to cover:
+Ruby 2.2.0 or later
+Rails 4.2.5
+ImageMagick
 
-* Ruby version
+Uses the following gems:
 
-* System dependencies
+dotenv-rails
+devise
+geocoder
+bootstrap-sass
+will_paginate-bootstrap
+will_paginate
+nilify_blanks
+paperclip
+aws-sdk
+font-awesome-rails
 
-* Configuration
+Will need a .env file created in the root of the application with the following keys:
 
-* Database creation
+S3_BUCKET_NAME
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+AWS_S3_HOSTNAME
+GOOGLE_MAP_API_KEY
+GOOGLE_MAP_API_REGION
+DEFAULT_DATABASE_USERNAME
+DEFAULT_DATABASE_PASSWORD
+(*)PRODUCTION_DATABASE_USERNAME
+(*)PRODUCTION_DATABASE_PASSWORD
+DEVELOPMENT_SECRET_KEY_BASE
+TEST_SECRET_KEY_BASE
+(*)PRODUCTION_SECRET_KEY_BASE
 
-* Database initialization
+(*) Not necessary in the .env as you would have them in the hosting environment
 
-* How to run the test suite
+Run rake db:migrate to create database
 
-* Services (job queues, cache servers, search engines, etc.)
+Run rake db:seed to seed database with initial values
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Testing is coming next
