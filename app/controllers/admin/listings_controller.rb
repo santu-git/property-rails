@@ -7,6 +7,8 @@ class Admin::ListingsController < ApplicationController
 
   def new
     @listing = Listing.new
+    10.times { @listing.features.build }
+    10.times { @listing.flags.build }
   end
 
   def create
@@ -38,7 +40,7 @@ class Admin::ListingsController < ApplicationController
   def destroy
     @listing = Listing.find(params[:id])
     @listing.destroy
-    flash[:notice] = 'Listing successfully removed'      
+    flash[:notice] = 'Listing successfully removed'
     redirect_to admin_listings_path
   end
 
@@ -50,7 +52,8 @@ class Admin::ListingsController < ApplicationController
         :address_3, :address_4, :town_city, :county, :postcode, :country, :latitude, :longitude,
         :display_address, :bedrooms, :bathrooms, :ensuites, :receptions, :kitchens, :summary,
         :description, :price, :price_on_application, :development, :investment, :estimated_rental_income,
-        :rent, :rent_on_application, :student, :featured, :status
+        :rent, :rent_on_application, :student, :featured, :status, features_attributes: [:id, :value, :_destroy],
+        flags_attributes: [:id, :value, :_destroy]
       )
     end
 

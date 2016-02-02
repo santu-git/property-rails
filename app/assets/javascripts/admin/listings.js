@@ -67,37 +67,6 @@ $(document).ready(function(){
     e.preventDefault();
   });
 
-  $('#listing_add_feature').on('click',function(e){
-    if ($('#listing_feature_value').val().length >= 3){
-      var url = '/admin/features';
-      var data = {feature:{listing_id: $('#listing_id').val(), value: $('#listing_feature_value').val()}};
-      $.post(url, data, function(data){
-        if (data.status == 200){
-          window.location.reload();
-        }
-      });
-    }else{
-      window.alert('Unable to add feature, minimum length 3 characters');
-    }
-    e.preventDefault();
-  });
-
-  $('#listing_add_flag').on('click',function(e){
-    if ($('#listing_flag_value').val().length >= 3){
-      var url = '/admin/flags';
-      var data = {flag:{listing_id: $('#listing_id').val(), value: $('#listing_flag_value').val()}};
-      $.post(url, data, function(data){
-        if (data.status == 200){
-          window.location.reload();
-        }
-      });
-    }else{
-      window.alert('Unable to add flag, minimum length 3 characters');
-    }
-
-    e.preventDefault();
-  });
-
   toggleDepartmentElements();
   loadBranchesForAgent();
 

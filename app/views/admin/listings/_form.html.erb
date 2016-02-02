@@ -267,76 +267,31 @@
       </div>
     </div>
   </div>
-  <% if @listing.persisted? %>
-    <div class="well">
-      <h2>Features</h2>
-      <p>Listing features are shown below</p>
-      <table class="table table-bordered">
-        <tr>
-          <th width="5%">ID</th>
-          <th>Value</th>
-          <th width="20%">Actions</th>
-        </tr>
-        <% if @features.each do |feature| %>
-          <tr>
-            <td><%= feature.id %></td>
-            <td><%= feature.value %></td>
-            <td><%= link_to 'Destroy', admin_feature_path(feature), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %></td>
-          </tr>
-        <% end.empty? %>
-          <tr>
-            <td colspan="4">You have no features</td>
-          </tr>
-        <% end %>
-      </table>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <input id="listing_feature_value" type="text" class="form-control">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <a id="listing_add_feature" href="#" class="btn btn-primary btn-block">Add Feature</a>
-        </div>
+  <div class="well">
+    <h2>Features</h2>
+    <p>Listing features are shown below</p>
+    <div id="features">
+      <%= f.fields_for :features do |feature| %>
+        <%= render 'feature_fields', f: feature %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Add Feature', f, :features, class: 'btn btn-primary' %>
       </div>
     </div>
-    <div class="well">
-      <h2>Flags</h2>
-      <p>Listing flags are shown below</p>
-      <table class="table table-bordered">
-        <tr>
-          <th width="5%">ID</th>
-          <th>Value</th>
-          <th width="20%">Actions</th>
-        </tr>
-        <% if @flags.each do |flag| %>
-          <tr>
-            <td><%= flag.id %></td>
-            <td><%= flag.value %></td>
-            <td><%= link_to 'Destroy', admin_flag_path(flag), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %></td>
-          </tr>
-        <% end.empty? %>
-          <tr>
-            <td colspan="4">You have no flags</td>
-          </tr>
-        <% end %>
-      </table>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <input id="listing_flag_value" type="text" class="form-control">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <a id="listing_add_flag" href="#" class="btn btn-primary btn-block">Add Flag</a>
-        </div>
+  </div>
+  <div class="well">
+    <h2>Flags</h2>
+    <p>Listing flags are shown below</p>
+    <div id="flags">
+      <%= f.fields_for :flags do |flag| %>
+        <%= render 'flag_fields', f: flag %>
+      <% end %>
+      <div class="links">
+        <%= link_to_add_association 'Add Flag', f, :flags, class: 'btn btn-primary' %>
       </div>
     </div>
-  <% end %>
+
+  </div>
   <div class="well">
     <h2>Miscellaneous</h2>
     <p>Miscellaneous settings for listing</p>

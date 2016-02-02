@@ -2,7 +2,11 @@ class Listing < ActiveRecord::Base
   nilify_blanks :types => [:text]
   belongs_to :agent
   belongs_to :branch
-  has_many :media
+  has_many :assets
+  has_many :features
+  has_many :flags
+  accepts_nested_attributes_for :features, allow_destroy: true
+  accepts_nested_attributes_for :flags, allow_destroy: true
 
   validates :agent_id, presence: true, numericality: { only_integer: true }
   validates :branch_id, presence: true, numericality: { only_integer: true }
