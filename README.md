@@ -1,4 +1,4 @@
-Ruby on Rails Property / Real Estate Portal App
+# Ruby on Rails Property / Real Estate Portal App
 
 A work in progress to learn ruby on rails
 
