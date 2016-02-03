@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 # Dotenv
 gem 'dotenv-rails', :groups => [:development, :test]
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 # Use mysql as the database for Active Record
@@ -35,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 # Added
+gem "passenger"
 gem 'devise'
 gem 'geocoder'
 gem 'bootstrap-sass', '~> 3.3.6'
