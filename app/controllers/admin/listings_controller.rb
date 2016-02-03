@@ -21,7 +21,7 @@ class Admin::ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     if @agent && @listing.save
       flash[:notice] = 'Listing successfully created'
-      redirect_to edit_admin_listing_path(@listing)
+      redirect_to admin_listings_path
     else
       render 'new'
     end
