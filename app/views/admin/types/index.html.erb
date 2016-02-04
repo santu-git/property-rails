@@ -3,7 +3,7 @@
 <%= render 'shared/alerts' %>
 <table class="table table-bordered">
   <tr>
-    <th width="5%">ID</th>
+    <th width="5%" style="text-align:center">ID</th>
     <th>Value</th>
     <% if is_admin? %>
       <th width="10%">Action</th>
@@ -11,7 +11,7 @@
   </tr>
   <% if @types.each do |type| %>
     <tr>
-      <td><%= type.id %></td>
+      <td style="text-align:center"><%= type.id %></td>
       <td><%= type.value %></td>
       <% if is_admin? %>
         <td>

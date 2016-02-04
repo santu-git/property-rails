@@ -20,21 +20,23 @@ ready = function() {
   }
 
   function loadBranchesForAgent(){
-    $('#listing_branch_id').find('option').remove();
-    $.ajax({
-      type: 'GET',
-      url: '/admin/branches/json?id=' + $('#listing_agent_id').val(),
-      dataType: 'json',
-      success: function(data){
-        if (data.length > 0){
-          $.each(data, function(i, obj){
-            $('#listing_branch_id').append($('<option>').text(obj.name).attr('value',obj.id));
-          });
-        }else{
-          $('#listing_branch_id').append($('<option>').text('No Branches Found'));
+    if ($('#listing_agent_id').val()){
+      $('#listing_branch_id').find('option').remove();
+      $.ajax({
+        type: 'GET',
+        url: '/admin/branches/json?id=' + $('#listing_agent_id').val(),
+        dataType: 'json',
+        success: function(data){
+          if (data.length > 0){
+            $.each(data, function(i, obj){
+              $('#listing_branch_id').append($('<option>').text(obj.name).attr('value',obj.id));
+            });
+          }else{
+            $('#listing_branch_id').append($('<option>').text('No Branches Found'));
+          }
         }
-      }
-    });
+      });      
+    }
   }
 
   $('#listing_department_id').on('change',function(){

@@ -3,7 +3,7 @@
 <%= render 'shared/alerts' %>
 <table class="table table-bordered">
   <tr>
-    <th width="5%">ID</th>
+    <th width="5%" style="text-align:center">ID</th>
     <th width="4%" style="text-align:center">Icon</td>
     <th>Listing</th>
     <th width="10%">Status</th>
@@ -11,7 +11,7 @@
   </tr>
   <% if @assets.each do |asset| %>
     <tr>
-      <td><%= asset.id %></td>
+      <td style="text-align:center"><%= asset.id %></td>
       <td style="text-align:center"><a href="<%= asset.upload.url %>" target="_blank"><i class="<%= paperclip_icon_url(asset.upload) %>" style="font-size:24px"></i></a></td>
       <td><%= asset.listing.display_address %> (<a href="<%= edit_admin_listing_path(asset.listing) %>">Listing ID: <%= asset.listing.id %></a>)</td>
       <td><%= asset.status === 1 ? 'Active' : 'Inactive' %></td>

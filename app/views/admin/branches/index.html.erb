@@ -3,7 +3,7 @@
 <%= render 'shared/alerts' %>
 <table class="table table-bordered">
   <tr>
-    <th width="5%">ID</th>
+    <th width="5%" style="text-align:center">ID</th>
     <th>Name</th>
     <th>Address</th>
     <th width="10%">Status</th>
@@ -11,7 +11,7 @@
   </tr>
   <% if @branches.each do |branch| %>
     <tr>
-      <td><%= branch.id %></td>
+      <td style="text-align:center"><%= branch.id %></td>
       <td><%= branch.name %></td>
       <td><%= branch.display_address %></td>
       <td><%= branch.status === 1 ? 'Active' : 'Inactive' %></td>

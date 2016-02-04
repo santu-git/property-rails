@@ -3,14 +3,14 @@
 <%= render 'shared/alerts' %>
 <table class="table table-bordered">
   <tr>
-    <th width="5%">ID</th>
+    <th width="5%" style="text-align:center">ID</th>
     <th>Address</th>
     <th width="10%">Status</th>
     <th width="10%">Action</th>
   </tr>
   <% if @listings.each do |listing| %>
     <tr>
-      <td><%= listing.id %></td>
+      <td style="text-align:center"><%= listing.id %></td>
       <td><%= listing.display_address %></td>
       <td><%= listing.status === 1 ? 'Active' : 'Inactive' %></td>
       <td>

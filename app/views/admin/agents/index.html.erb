@@ -3,14 +3,14 @@
 <%= render 'shared/alerts' %>
 <table class="table table-bordered">
   <tr>
-    <th width="5%">ID</th>
+    <th width="5%" style="text-align:center">ID</th>
     <th>Name</th>
     <th width="10%">Status</th>
     <th width="10%">Action</th>
   </tr>
   <% if @agents.each do |agent| %>
     <tr>
-      <td><%= agent.id %></td>
+      <td style="text-align:center"><%= agent.id %></td>
       <td><%= agent.name %></td>
       <td><%= agent.status === 1 ? 'Active' : 'Inactive' %></td>
       <td>

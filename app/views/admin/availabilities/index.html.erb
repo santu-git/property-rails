@@ -3,7 +3,7 @@
 <%= render 'shared/alerts' %>
 <table class="table table-bordered">
   <tr>
-    <th width="5%">ID</th>
+    <th width="5%" style="text-align:center">ID</th>
     <th>Value</th>
     <% if is_admin? %>
       <th width="10%">Action</th>
@@ -11,7 +11,7 @@
   </tr>
   <% if @availabilities.each do |availability| %>
     <tr>
-      <td><%= availability.id %></td>
+      <td style="text-align:center"><%= availability.id %></td>
       <td><%= availability.value %></td>
       <% if is_admin? %>
         <td>
