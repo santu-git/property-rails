@@ -17,6 +17,14 @@ Rails.application.routes.draw do
     :listings, :assets
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:show]
+      resources :agents, only: [:show]
+      resources :listings, only: [:show]
+    end
+  end
+
   devise_for :users,
     :path => 'accounts',
     :path_names => {
