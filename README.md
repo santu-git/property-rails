@@ -21,6 +21,7 @@ Uses the following gems:
 * font-awesome-rails
 * cocoon
 * active_model_serializers
+* pundit
 
 Will need a .env file created in the root of the application with the following keys:
 
