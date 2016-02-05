@@ -2,9 +2,7 @@ class Admin::BranchesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @branches = Branch.joins(:agent).where(
-      'agents.user_id = ?', current_user.id
-    ).paginate(
+    @branches = Branch.belongs_to_current_user(current_user).paginate(
       :page => params[:page],
       :per_page => 10
     )
@@ -15,9 +13,7 @@ class Admin::BranchesController < ApplicationController
   end
 
   def create
-    @agent = Agent.where(
-      'user_id = ? AND id = ?', current_user.id, branch_params[:agent_id]
-    ).first
+    @agent = Agent.belongs_to_current_user(current_user).find(branch_params[:agent_id])
     @branch = Branch.new(branch_params)
     if @agent && @branch.save
       flash[:notice] = 'Branch successfully created'
@@ -28,22 +24,16 @@ class Admin::BranchesController < ApplicationController
   end
 
   def json
-    @branches = Branch.joins(:agent).where(
-      'branches.agent_id = ? AND agents.user_id = ?', params[:id], current_user.id
-    )
+    @branches = Branch.belongs_to_current_user(current_user).belongs_to_agent(params[:id])
     render json: @branches
   end
 
   def edit
-    @branch = Branch.joins(:agent).where(
-      'branches.id = ? AND agents.user_id = ?', params[:id], current_user.id
-    ).first
+    @branch = Branch.belongs_to_current_user(current_user).find(params[:id])
   end
 
   def update
-    @branch = Branch.joins(:agent).where(
-      'branches.id = ? AND agents.user_id = ?', params[:id], current_user.id
-    ).first
+    @branch = Branch.belongs_to_current_user(current_user).belongs_to_agent(params[:id])
     if @branch && @branch.update(branch_params)
       flash[:notice] = 'Branch successfully updated'
       redirect_to admin_branches_path
@@ -53,9 +43,7 @@ class Admin::BranchesController < ApplicationController
   end
 
   def destroy
-    @branch = Branch.joins(:agent).where(
-      'branches.id = ? AND agents.user_id = ?', params[:id], current_user.id
-    ).first
+    @branch = Branch.belongs_to_current_user(current_user).belongs_to_agent(params[:id])
     if @branch && @branch.destroy
       flash[:notice] = 'Branch successfully removed'
     else

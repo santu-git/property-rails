@@ -2,9 +2,7 @@ class Admin::AssetsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @assets = Asset.joins(listing: :agent).where(
-      'agents.user_id = ?', current_user.id
-    ).paginate(
+    @assets = Asset.belongs_to_current_user(current_user).paginate(
       :page => params[:page],
       :per_page => 10
     )
@@ -16,9 +14,7 @@ class Admin::AssetsController < ApplicationController
 
   def create
     # Get the listing this asset is for checking that the listing belongs to the user
-    @listing = Listing.joins(:agent).where(
-      'agents.user_id = ? AND listings.id = ?', current_user.id, asset_params[:listing_id]
-    ).first
+    @listing = Listing.belongs_to_current_user(current_user).find(asset_params[:listing_id])
     # Create the asset object using asset_params
     @asset = Asset.new(asset_params)
     # Check is the listing was found and the asset saved
@@ -31,15 +27,11 @@ class Admin::AssetsController < ApplicationController
   end
 
   def edit
-    @asset = Asset.joins(listing: :agent).where(
-      'agents.user_id = ? AND assets.id = ?', current_user.id, params[:id]
-    ).first
+    @asset = Asset.belongs_to_current_user(current_user).find(params[:id])
   end
 
   def update
-    @asset = Asset.joins(listing: :agent).where(
-      'agents.user_id = ? AND assets.id = ?', current_user.id, params[:id]
-    ).first
+    @asset = Asset.belongs_to_current_user(current_user).find(params[:id])
     if @asset && @asset.update(asset_params)
       flash[:notice] = 'Asset successfully updated'
       redirect_to admin_assets_path
@@ -49,9 +41,7 @@ class Admin::AssetsController < ApplicationController
   end
 
   def destroy
-    @asset = Asset.joins(listing: :agent).where(
-      'agents.user_id = ? AND assets.id = ?', current_user.id, params[:id]
-    ).first
+    @asset = Asset.belongs_to_current_user(current_user).find(params[:id])
     if @asset && @asset.destroy
       flash[:notice] = 'Asset successfully removed'
     else

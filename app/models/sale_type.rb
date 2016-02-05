@@ -1,3 +1,6 @@
 class SaleType < ActiveRecord::Base
-  validates :value, presence: true, length: { in: 3..50 }, uniqueness: true          
+  # Relations
+  has_many :listings
+  # Validations
+  validates :value, presence: true, length: { in: 3..50 }, uniqueness: true
 end

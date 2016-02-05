@@ -1,13 +1,11 @@
 class Listing < ActiveRecord::Base
-  nilify_blanks :types => [:text]
+  # Relations
   belongs_to :agent
   belongs_to :branch
   has_many :assets
   has_many :features
   has_many :flags
-  accepts_nested_attributes_for :features, allow_destroy: true
-  accepts_nested_attributes_for :flags, allow_destroy: true
-
+  # Validations
   validates :agent_id, presence: true, numericality: { only_integer: true }
   validates :branch_id, presence: true, numericality: { only_integer: true }
   validates :age_id, presence: true, numericality: { only_integer: true }
@@ -19,7 +17,6 @@ class Listing < ActiveRecord::Base
   validates :style_id, presence: true, numericality: { only_integer: true }
   validates :tenure_id, presence: true, numericality: { only_integer: true }, if: :is_for_sale?
   validates :type_id, presence: true, numericality: { only_integer: true }
-
   validates :address_1, presence: true, length: { in: 3..50 }
   validates :address_2, length: { in: 0..50 }
   validates :address_3, length: { in: 0..50 }
@@ -48,13 +45,23 @@ class Listing < ActiveRecord::Base
   validates :student, presence: true, inclusion: [true, false], if: :is_to_let?
   validates :featured, presence: true, inclusion: [true, false]
   validates :status, presence: true, numericality: { only_integer: true }
-
+  # Functions
+  nilify_blanks :types => [:text]
   def is_for_sale?
     department_id == 1
   end
 
   def is_to_let?
     department_id == 2
+  end
+  # Nested Attributes (Nested Forms)
+  accepts_nested_attributes_for :features, allow_destroy: true
+  accepts_nested_attributes_for :flags, allow_destroy: true
+  # Scopes
+  def self.belongs_to_current_user(current_user)
+    self.joins(:agent).where(
+      'agents.user_id = ?', current_user.id
+    )
   end
 
 end

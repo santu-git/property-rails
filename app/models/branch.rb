@@ -1,7 +1,7 @@
 class Branch < ActiveRecord::Base
-  nilify_blanks :types => [:text]
+  # Relations
   belongs_to :agent
-
+  # Validations
   validates :agent_id, presence: true, numericality: { only_integer: true }
   validates :name, presence: true, length: { in: 3..50 }
   validates :address_1, presence: true, length: { in: 3..50 }
@@ -16,5 +16,16 @@ class Branch < ActiveRecord::Base
   validates :longitude, presence: true, numericality: true
   validates :display_address, presence: true, length: { in: 3..200 }
   validates :status, presence: true, numericality: { only_integer: true }
+  # Scopes
+  def self.belongs_to_current_user(current_user)
+    self.joins(:agent).where(
+      'agents.user_id = ?', current_user.id
+    )
+  end
 
+  def self.belongs_to_agent(id)
+    self.where('branches.agent_id = ?', id)
+  end
+  # Functions
+  nilify_blanks :types => [:text]  
 end

@@ -1,3 +1,6 @@
 class MediaType < ActiveRecord::Base
-  validates :value, presence: true, length: { in: 3..50 }, uniqueness: true    
+  # Relations
+  has_many :assets
+  # Validations
+  validates :value, presence: true, length: { in: 3..50 }, uniqueness: true
 end
