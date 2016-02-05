@@ -9,6 +9,7 @@ ImageMagick
 Uses the following gems:
 
 * dotenv-rails
+* passenger
 * devise
 * geocoder
 * bootstrap-sass
@@ -19,6 +20,7 @@ Uses the following gems:
 * aws-sdk
 * font-awesome-rails
 * cocoon
+* active_model_serializers
 
 Will need a .env file created in the root of the application with the following keys:
 
