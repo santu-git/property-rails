@@ -2,10 +2,12 @@ class Admin::AgesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # Get ages
     @ages = Age.all.paginate(
       :page => params[:page],
       :per_page => 10
     )
+    # Check with pundit if the user has permission
     authorize @ages
   end
 

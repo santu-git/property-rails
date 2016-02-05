@@ -2,19 +2,29 @@ class Admin::AgentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # Get agents
     @agents = current_user.agents.paginate(
       :page => params[:page],
       :per_page => 10
     )
+    # Check with pundit if the user has permission
+    authorize @agents
   end
 
   def new
+    # Create new instance of agent
     @agent = Agent.new
+    # Check with pundit if the user has permission
+    authorize @agent
   end
 
   def create
+    # Create new agent from params and set user_id to logged in user
     @agent = Agent.new(agent_params)
     @agent.user_id = current_user.id
+    # Check with pundit if the user has permission
+    authorize @agent
+    # Survived so save the agent
     if @agent.save
       flash[:notice] = 'Agent successfully created'
       redirect_to admin_agents_path
@@ -24,11 +34,18 @@ class Admin::AgentsController < ApplicationController
   end
 
   def edit
-    @agent = current_user.agents.find_by_id(params[:id])
+    # Get the agent by id
+    @agent = Agent.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @agent
   end
 
   def update
-    @agent = current_user.agents.find_by_id(params[:id])
+    # Get the agent by id
+    @agent = Agent.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @agent
+    # Survived so update
     if @agent && @agent.update(agent_params)
       flash[:notice] = 'Agent successfully updated'
       redirect_to admin_agents_path
@@ -38,7 +55,10 @@ class Admin::AgentsController < ApplicationController
   end
 
   def destroy
-    @agent = current_user.agents.find_by_id(params[:id])
+    @agent = Agent.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @agent
+    # Survived so destroy agent
     if @agent && @agent.destroy
       flash[:notice] = 'Agent successfully removed'
     else

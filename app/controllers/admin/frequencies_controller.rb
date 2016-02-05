@@ -1,16 +1,29 @@
 class Admin::FrequenciesController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_admin, except: [:index, :show]
 
   def index
+    # Get frequencies
     @frequencies = Frequency.all.paginate(
       :page => params[:page],
       :per_page => 10
     )
+    # Check with pundit if the user has permission
+    authorize @frequencies
+  end
+
+  def new
+    # Create new instance
+    @frequency = Frequency.new
+    # Check with pundit if the user has permission
+    authorize @frequency
   end
 
   def create
+    # Create instance from params
     @frequency = Frequency.new(frequency_params)
+    # Check with pundit if the user has permission
+    authorize @frequency
+    # Survived so save
     if @frequency.save
       flash[:notice] = 'Frequency successfully created'
       redirect_to admin_frequencies_path
@@ -19,16 +32,18 @@ class Admin::FrequenciesController < ApplicationController
     end
   end
 
-  def new
-    @frequency = Frequency.new
-  end
-
   def edit
+    # Get frequency
     @frequency = Frequency.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @frequency
   end
 
   def update
+    # Get frequency
     @frequency = Frequency.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @frequency
     if @frequency && @frequency.update(frequency_params)
       flash[:notice] = 'Frequency successfully updated'
       redirect_to admin_frequencies_path
@@ -38,7 +53,11 @@ class Admin::FrequenciesController < ApplicationController
   end
 
   def destroy
+    # get frequency
     @frequency = Frequency.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @frequency
+    # Survived so destroy
     if @frequency && @frequency.destroy
       flash[:notice] = 'Frequency successfully removed'
     else

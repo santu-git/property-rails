@@ -27,5 +27,5 @@ class Branch < ActiveRecord::Base
     self.where('branches.agent_id = ?', id)
   end
   # Functions
-  nilify_blanks :types => [:text]  
+  nilify_blanks :types => [:text]
 end

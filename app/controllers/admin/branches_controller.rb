@@ -2,19 +2,37 @@ class Admin::BranchesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # Get branches
     @branches = Branch.belongs_to_current_user(current_user).paginate(
       :page => params[:page],
       :per_page => 10
     )
+    # Check with pundit if the user has permission
+    authorize @branches
+  end
+
+  def json
+    # Get branches
+    @branches = Branch.belongs_to_current_user(current_user).belongs_to_agent(params[:id])
+    # Check with pundit if user has permission
+    authorize @branches, :json?
+    # Render to json
+    render json: @branches
   end
 
   def new
+    # Create new instance of branch
     @branch = Branch.new
+    # Check with pundit if the user has permission
+    authorize @branch
   end
 
   def create
-    @agent = Agent.belongs_to_current_user(current_user).find(branch_params[:agent_id])
+    # Create instance of branch from params
     @branch = Branch.new(branch_params)
+    # Check with pundit if the user has permission
+    authorize @branch
+    # Survived so save branch
     if @agent && @branch.save
       flash[:notice] = 'Branch successfully created'
       redirect_to admin_branches_path
@@ -23,17 +41,20 @@ class Admin::BranchesController < ApplicationController
     end
   end
 
-  def json
-    @branches = Branch.belongs_to_current_user(current_user).belongs_to_agent(params[:id])
-    render json: @branches
-  end
-
   def edit
-    @branch = Branch.belongs_to_current_user(current_user).find(params[:id])
+    # Get branch
+    @branch = Branch.find(params[:id])
+    # Check with pundit if authorized
+    authorize @branch
   end
 
   def update
-    @branch = Branch.belongs_to_current_user(current_user).belongs_to_agent(params[:id])
+    #@branch = Branch.belongs_to_current_user(current_user).belongs_to_agent(params[:id])
+    # Get the branch
+    @branch = Branch.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @branch
+    # Survived so update branch
     if @branch && @branch.update(branch_params)
       flash[:notice] = 'Branch successfully updated'
       redirect_to admin_branches_path
@@ -43,7 +64,11 @@ class Admin::BranchesController < ApplicationController
   end
 
   def destroy
-    @branch = Branch.belongs_to_current_user(current_user).belongs_to_agent(params[:id])
+    # Get the branch
+    @branch = Branch.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @branch
+    # Survived so destroy branch
     if @branch && @branch.destroy
       flash[:notice] = 'Branch successfully removed'
     else
@@ -55,8 +80,9 @@ class Admin::BranchesController < ApplicationController
   private
     def branch_params
       params.require(:branch).permit(
-        :agent_id, :name, :address_1, :address_2, :address_3, :address_4, :town_city, :county, :postcode, :country,
-        :latitude, :longitude, :display_address, :status
+        :agent_id, :name, :address_1, :address_2, :address_3, :address_4,
+        :town_city, :county, :postcode, :country, :latitude, :longitude,
+        :display_address, :status
       )
     end
 

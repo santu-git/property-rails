@@ -1,16 +1,29 @@
 class Admin::StylesController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_admin, except: [:index, :show]
 
   def index
+    # Get styles
     @styles = Style.all.paginate(
       :page => params[:page],
       :per_page => 10
     )
+    # Check with pundit if the user has permission
+    authorize @styles
+  end
+
+  def new
+    # New instance
+    @style = Style.new
+    # Check with pundit if the user has permission
+    authorize @style
   end
 
   def create
+    # Create new instance from params
     @style = Style.new(style_params)
+    # Check with pundit if the user has permission
+    authorize @style
+    # Survived so saved
     if @style.save
       flash[:notice] = 'Style successfully created'
       redirect_to admin_styles_path
@@ -19,16 +32,19 @@ class Admin::StylesController < ApplicationController
     end
   end
 
-  def new
-    @style = Style.new
-  end
-
   def edit
+    # Get style
     @style = Style.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @style
   end
 
   def update
+    # Get style
     @style = Style.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @style
+    # Survived so update
     if @style && @style.update(style_params)
       flash[:notice] = 'Style successfully updated'
       redirect_to admin_styles_path
@@ -39,6 +55,9 @@ class Admin::StylesController < ApplicationController
 
   def destroy
     @style = Style.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @style
+    # Survived so destroy
     if @style && @style.destroy
       flash[:notice] = 'Style successfully removed'
     else

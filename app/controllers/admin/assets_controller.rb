@@ -2,22 +2,28 @@ class Admin::AssetsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # Get assets
     @assets = Asset.belongs_to_current_user(current_user).paginate(
       :page => params[:page],
       :per_page => 10
     )
+    # Check with pundit if the user has permission
+    authorize @assets
   end
 
   def new
+    # Create new asset
     @asset = Asset.new
+    # Check with pundit if the user has permission
+    authorize @asset
   end
 
   def create
-    # Get the listing this asset is for checking that the listing belongs to the user
-    @listing = Listing.belongs_to_current_user(current_user).find(asset_params[:listing_id])
     # Create the asset object using asset_params
     @asset = Asset.new(asset_params)
-    # Check is the listing was found and the asset saved
+    # Check with pundit if the user has permission
+    authorize @asset
+    # Survived so save the asset
     if @listing && @asset.save
       flash[:notice] = 'Asset successfully created'
       redirect_to admin_assets_path
@@ -27,11 +33,18 @@ class Admin::AssetsController < ApplicationController
   end
 
   def edit
-    @asset = Asset.belongs_to_current_user(current_user).find(params[:id])
+    # Get the asset
+    @asset = Asset.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @asset
   end
 
   def update
-    @asset = Asset.belongs_to_current_user(current_user).find(params[:id])
+    # Get the asset
+    @asset = Asset.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @asset
+    # Survived so update
     if @asset && @asset.update(asset_params)
       flash[:notice] = 'Asset successfully updated'
       redirect_to admin_assets_path
@@ -41,7 +54,11 @@ class Admin::AssetsController < ApplicationController
   end
 
   def destroy
-    @asset = Asset.belongs_to_current_user(current_user).find(params[:id])
+    # Get the asset
+    @asset = Asset.find(params[:id])
+    # Check with pundit if the user has permission
+    authorize @asset
+    # Survived so destroy
     if @asset && @asset.destroy
       flash[:notice] = 'Asset successfully removed'
     else
