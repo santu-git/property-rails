@@ -46,6 +46,7 @@ gem 'aws-sdk', '< 2.0'
 gem 'font-awesome-rails'
 gem 'cocoon'
 gem 'active_model_serializers', :git => 'https://github.com/rails-api/active_model_serializers.git'
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
 
   # Relations
   has_many :agents
+
+  # Methods
+  def is_admin?
+    self.admin
+  end
 end
