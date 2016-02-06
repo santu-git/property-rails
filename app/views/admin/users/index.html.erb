@@ -1,0 +1,26 @@
+<h1><%= current_user.email %></h1>
+<div class="well">
+  <h2>API Details</h2>
+  <p>Shown below are the details to connect to the api</p>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>API Username</label>
+        <input type="text" class="form-control" readonly="true" value="<%=current_user.email%>">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label>API Token</label>
+        <input type="text" class="form-control" readonly="true" value="<%=current_user.api_token%>">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary btn-block">Regenerate Token</button>
+    </div>
+  </div>
+</div>

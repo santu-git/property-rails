@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :ages, :availabilities, :departments, :frequencies, :media_types,
     :qualifiers, :styles, :tenures, :types, :sale_types, :agents, :branches,
     :listings, :assets
+    resources :users, only: [:index], path: 'user'
   end
 
   namespace :api do
