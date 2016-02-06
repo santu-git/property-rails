@@ -1,6 +1,7 @@
 class Branch < ActiveRecord::Base
   # Relations
   belongs_to :agent
+  has_many :listing
   # Validations
   validates :agent_id, presence: true, numericality: { only_integer: true }
   validates :name, presence: true, length: { in: 3..50 }

@@ -20,9 +20,20 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:show]
-      resources :agents, only: [:show]
-      resources :listings, only: [:show]
+      resources :ages, only: [:index]
+      resources :availabilities, only: [:index]
+      resources :departments, only: [:index]
+      resources :frequencies, only: [:index]
+      resources :media_types, only: [:index], path: 'mediatypes'
+      resources :qualifiers, only: [:index]
+      resources :sale_types, only: [:index], path: 'saletypes'
+      resources :styles, only: [:index]
+      resources :tenures, only: [:index]
+      resources :types, only: [:index]
+      resources :users, only: [:index], path: 'user'
+      resources :agents, only: [:index]
+      resources :branches, only: [:show]
+      get 'listings/search'
     end
   end
 
