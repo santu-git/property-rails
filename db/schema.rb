@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201194307) do
+ActiveRecord::Schema.define(version: 20160206101150) do
 
   create_table "agents", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(version: 20160201194307) do
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",    null: false
     t.boolean  "admin",                              default: false, null: false
+    t.string   "api_token",              limit: 100
     t.string   "encrypted_password",     limit: 255, default: "",    null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
