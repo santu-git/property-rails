@@ -6,15 +6,17 @@ class Admin::ListingsController < ApplicationController
       :page => params[:page],
       :per_page => 10
     )
+    authorize @listings
   end
 
   def new
     @listing = Listing.new
+    authorize @listing
   end
 
   def create
-    @agent = Agent.belongs_to_current_user(current_user).find(listing_params[:id])
     @listing = Listing.new(listing_params)
+    authorize @listing
     if @agent && @listing.save
       flash[:notice] = 'Listing successfully created'
       redirect_to admin_listings_path
@@ -25,10 +27,12 @@ class Admin::ListingsController < ApplicationController
 
   def edit
     @listing = Listing.belongs_to_current_user(current_user).find(params[:id])
+    authorize @listing
   end
 
   def update
     @listing = Listing.belongs_to_current_user(current_user).find(params[:id])
+    authorize @listing
     if @listing && @listing.update(listing_params)
       flash[:notice] = 'Listing successfully updated'
       redirect_to admin_listings_path
@@ -39,6 +43,7 @@ class Admin::ListingsController < ApplicationController
 
   def destroy
     @listing = Listing.belongs_to_current_user(current_user).find(params[:id])
+    authorize @listing
     if @listing && @listing.destroy
       flash[:notice] = 'Listing successfully removed'
     else

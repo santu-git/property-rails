@@ -9,11 +9,15 @@ class BranchPolicy < ApplicationPolicy
     true
   end
   def create?
-    #Agent.belongs_to_current_user(@user).exists?(@record.agent_id)
-    false
+    # TODO These are nasty
+    # You can create a branch if the agent you are associating the new agent
+    # with belongs to your current user
+    Agent.belongs_to_current_user(@user).exists?(@record.agent_id)
   end
   def update?
-    false
+    # You can update a branch if the branch belongs to current user
+    # (via agents join) and the branch exists for the id provided
+    Branch.belongs_to_current_user(@user).exists?(@record.id)
   end
   def destroy?
     update?
