@@ -17,7 +17,7 @@ class Admin::ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
     authorize @listing
-    if @agent && @listing.save
+    if @listing.save
       flash[:notice] = 'Listing successfully created'
       redirect_to admin_listings_path
     else

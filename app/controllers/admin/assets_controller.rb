@@ -24,7 +24,7 @@ class Admin::AssetsController < ApplicationController
     # Check with pundit if the user has permission
     authorize @asset
     # Survived so save the asset
-    if @listing && @asset.save
+    if @asset.save
       flash[:notice] = 'Asset successfully created'
       redirect_to admin_assets_path
     else

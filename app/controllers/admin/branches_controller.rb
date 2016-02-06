@@ -33,7 +33,7 @@ class Admin::BranchesController < ApplicationController
     # Check with pundit if the user has permission
     authorize @branch
     # Survived so save branch
-    if @agent && @branch.save
+    if @branch.save
       flash[:notice] = 'Branch successfully created'
       redirect_to admin_branches_path
     else

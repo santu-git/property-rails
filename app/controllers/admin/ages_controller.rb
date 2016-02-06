@@ -11,6 +11,13 @@ class Admin::AgesController < ApplicationController
     authorize @ages
   end
 
+  def new
+    # Create new instance of age
+    @age = Age.new
+    # Check with pundit if able to create new
+    authorize @age
+  end
+
   def create
     # Create instance of age from params
     @age = Age.new(age_params)
@@ -23,13 +30,6 @@ class Admin::AgesController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def new
-    # Create new instance of age
-    @age = Age.new
-    # Check with pundit if able to create new
-    authorize @age
   end
 
   def edit
