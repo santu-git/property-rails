@@ -1,4 +1,4 @@
-<h1>Listings <%= link_to 'Add New Listing', new_admin_listing_path, class: 'btn btn-primary pull-right' %></h1>
+<h1>Listings <%= link_to 'Add New Listing', new_admin_listing_path, data: { no_turbolink: true }, class: 'btn btn-primary pull-right' %></h1>
 <p>Shown below are the listings you've created.</p>
 <%= render 'shared/alerts' %>
 <table class="table table-bordered">
@@ -16,7 +16,7 @@
       <td>
         <table width="100%">
           <tr>
-            <td width="45%"><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_admin_listing_path(listing), class: 'btn btn-primary btn-block' %></td>
+            <td width="45%"><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_admin_listing_path(listing), class: 'btn btn-primary btn-block', data: { no_turbolink: true } %></td>
             <td width="10%"></td>
             <td width="45%"><%= link_to '<i class="fa fa-trash"></i>'.html_safe, admin_listing_path(listing), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %></td>
           </tr>
