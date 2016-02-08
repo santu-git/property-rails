@@ -22,6 +22,7 @@ Uses the following gems:
 * cocoon
 * active_model_serializers
 * pundit
+* ckeditor
 
 Will need a .env file created in the root of the application with the following keys:
 
