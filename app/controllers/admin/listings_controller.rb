@@ -63,7 +63,7 @@ class Admin::ListingsController < ApplicationController
         :description, :price, :price_on_application, :development, :investment,
         :estimated_rental_income, :rent, :rent_on_application, :student, :featured,
         :status, features_attributes: [:id, :value, :_destroy],
-        flags_attributes: [:id, :value, :_destroy]
+        flags_attributes: [:id, :value, :_destroy], assets_attributes: [:id, :media_type_id, :upload, :status,:_destroy]
       )
     end
 

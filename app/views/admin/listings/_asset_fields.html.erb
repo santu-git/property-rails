@@ -1,0 +1,50 @@
+<div class="nested-fields">
+  <%= f.hidden_field :_destroy, :value => 1 %>
+  <div class="field row">
+    <% if f.object.persisted? %>
+      <div class="col-md-1">
+        <label>&nbsp;</label><br/>
+        <a href="<%=f.object.upload%>" target="_blank"><i class="<%= paperclip_icon_url(f.object.upload)%>" style="font-size:34px"></i></a>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label>Type</label>
+          <%= f.select(:media_type_id, options_for_select(MediaType.all.map{|s|[s.value, s.id]}, selected_key = f.object.media_type_id), {}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+    <% else %>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label>Type</label>
+          <%= f.select(:media_type_id, options_for_select(MediaType.all.map{|s|[s.value, s.id]}, selected_key = f.object.media_type_id), {}, { :class => 'form-control' }) %>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Status</label>
+        <%= f.select(:status, options_for_select([['Active',1],['Inactive',0]], selected_key = f.object.status), {}, {:class => 'form-control'}) %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>File</label>
+        <div class="input-group">
+          <span class="input-group-btn">
+            <span class="btn btn-primary btn-file">
+              Browse… <%= f.file_field :upload %>
+            </span>
+          </span>
+          <input type="text" class="form-control" readonly="" value="<%= f.object.upload_file_name %>">
+        </div>      
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>Action</label>
+        <%= link_to_remove_association "Remove Asset", f, class: 'btn btn-primary btn-block' %>
+      </div>
+    </div>
+  </div>
+  <br/>
+</div>

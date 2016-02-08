@@ -11,11 +11,7 @@ class Listing < ActiveRecord::Base
   validates :age_id, presence: true, numericality: { only_integer: true }
   validates :availability_id, presence: true, numericality: { only_integer: true }
   validates :department_id, presence: true, numericality: { only_integer: true }
-  validates :frequency_id, presence: true, numericality: { only_integer: true }, if: :is_to_let?
-  validates :qualifier_id, presence: true, numericality: { only_integer: true }, if: :is_for_sale?
-  validates :sale_type_id, presence: true, numericality: { only_integer: true }, if: :is_for_sale?
   validates :style_id, presence: true, numericality: { only_integer: true }
-  validates :tenure_id, presence: true, numericality: { only_integer: true }, if: :is_for_sale?
   validates :type_id, presence: true, numericality: { only_integer: true }
   validates :address_1, presence: true, length: { in: 3..50 }
   validates :address_2, length: { in: 0..50 }
@@ -35,18 +31,30 @@ class Listing < ActiveRecord::Base
   validates :kitchens, presence: true, numericality: true
   validates :summary, presence: true
   validates :description, presence: true
-  validates :price, presence: true, numericality: true, if: :is_for_sale?
-  validates :price_on_application, presence: true, inclusion: [true, false], if: :is_for_sale?
-  validates :development, presence: true, inclusion: [true, false], if: :is_for_sale?
-  validates :investment, presence: true, inclusion: [true, false], if: :is_for_sale?
-  validates :estimated_rental_income, presence: true, numericality: true, if: :is_for_sale?
-  validates :rent, presence: true, numericality: true, if: :is_to_let?
-  validates :rent_on_application, presence: true, inclusion: [true, false], if: :is_to_let?
-  validates :student, presence: true, inclusion: [true, false], if: :is_to_let?
-  validates :featured, presence: true, inclusion: [true, false]
+  validates :featured, inclusion: [true, false]
   validates :status, presence: true, numericality: { only_integer: true }
+
+  with_options if: :is_to_let? do |let|
+    let.validates :frequency_id, presence: true, numericality: { only_integer: true }
+    let.validates :rent, presence: true, numericality: true
+    let.validates :rent_on_application, inclusion: [true, false]
+    let.validates :student, inclusion: [true, false]
+  end
+  
+  with_options if: :is_for_sale? do |sale|
+    sale.validates :qualifier_id, presence: true, numericality: { only_integer: true }
+    sale.validates :sale_type_id, presence: true, numericality: { only_integer: true }
+    sale.validates :tenure_id, presence: true, numericality: { only_integer: true }    
+    sale.validates :price_on_application, inclusion: [true, false]
+    sale.validates :development, inclusion: [true, false]
+    sale.validates :investment, inclusion: [true, false]
+    sale.validates :estimated_rental_income, presence: true, numericality: true
+    sale.validates :price, presence: true, numericality: true
+  end
+ 
   # Functions
   nilify_blanks :types => [:text]
+
   def is_for_sale?
     department_id == 1
   end
@@ -54,9 +62,12 @@ class Listing < ActiveRecord::Base
   def is_to_let?
     department_id == 2
   end
+
   # Nested Attributes (Nested Forms)
   accepts_nested_attributes_for :features, allow_destroy: true
   accepts_nested_attributes_for :flags, allow_destroy: true
+  accepts_nested_attributes_for :assets, allow_destroy: true
+  
   # Scopes
   def self.belongs_to_current_user(current_user)
     self.joins(:agent).where(

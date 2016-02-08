@@ -2,6 +2,9 @@ class AssetPolicy < ApplicationPolicy
   def index?
     true
   end
+  def new?
+    true
+  end
   def create?
     # If the listing chosen to attach the media to belongs to the current user
     # then create and update are possible for this asset

@@ -12,10 +12,22 @@ Rails.application.routes.draw do
     get 'branches/json'
     get 'dashboard/index'
     get 'geo/lookup'
-    resources :ages, :availabilities, :departments, :frequencies, :media_types,
-    :qualifiers, :styles, :tenures, :types, :sale_types, :agents, :branches,
-    :listings, :assets
+    resources :ages
+    resources :availabilities
+    resources :departments
+    resources :frequencies
+    resources :media_types
+    resources :qualifiers
+    resources :styles
+    resources :tenures
+    resources :types
+    resources :sale_types
+    resources :agents
+    resources :branches
+    resources :listings
+    resources :assets
     resources :users, only: [:index], path: 'user'
+    post 'users/token', path: 'user/token'
   end
 
   namespace :api do
