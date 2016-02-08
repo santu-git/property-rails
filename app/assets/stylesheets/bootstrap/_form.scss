@@ -2,3 +2,9 @@
   @extend .form-group;
   margin-bottom:0
 }
+.form-group{
+  @extend .form-group;
+  br{
+    display:none;
+  }
+}
