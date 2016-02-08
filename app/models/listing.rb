@@ -55,6 +55,9 @@ class Listing < ActiveRecord::Base
   # Functions
   nilify_blanks :types => [:text]
 
+  #Geocoder
+  reverse_geocoded_by :latitude, :longitude
+
   def is_for_sale?
     department_id == 1
   end

@@ -17,6 +17,10 @@ class Branch < ActiveRecord::Base
   validates :longitude, presence: true, numericality: true
   validates :display_address, presence: true, length: { in: 3..200 }
   validates :status, presence: true, numericality: { only_integer: true }
+
+  #Geocoder
+  reverse_geocoded_by :latitude, :longitude
+
   # Scopes
   def self.belongs_to_current_user(current_user)
     self.joins(:agent).where(

@@ -4,4 +4,5 @@ class ListingSerializer < ActiveModel::Serializer
   :bedrooms, :bathrooms, :ensuites, :receptions, :kitchens, :summary, :description,
   :price
   belongs_to :branch
+  has_many :assets
 end
