@@ -7,12 +7,12 @@
     &> tr {
       &> td{
         vertical-align: middle;
-        padding-top:6px;
-        padding-bottom:6px;
+        padding-top:rem(6);
+        padding-bottom:rem(6);
       }
       &> th{
-        padding-top:12px;
-        padding-bottom:12px;
+        padding-top:rem(12);
+        padding-bottom:rem(12);
       }
     }
   }

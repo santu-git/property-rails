@@ -1,0 +1,18 @@
+/// Strips the unit from a number.
+///
+/// @param {Number (With Unit)} $value
+///
+/// @example scss - Usage
+///   $dimension: strip-units(10em);
+///
+/// @example css - CSS Output
+///   $dimension: 10;
+///
+/// @return {Number (Unitless)}
+//
+// Original function extracted from Bourbon Library at:
+// https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/functions/_strip-units.scss
+
+@function strip-units($value) {
+  @return ($value / ($value * 0 + 1));
+}

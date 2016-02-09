@@ -61,7 +61,7 @@ class Admin::ListingsController < ApplicationController
         :county, :postcode, :country, :latitude, :longitude, :display_address,
         :bedrooms, :bathrooms, :ensuites, :receptions, :kitchens, :summary,
         :description, :price, :price_on_application, :development, :investment,
-        :estimated_rental_income, :rent, :rent_on_application, :student, :featured,
+        :estimated_rental_income, :rent, :rent_on_application, :rental_detail, :student, :featured,
         :status, features_attributes: [:id, :value, :_destroy],
         flags_attributes: [:id, :value, :_destroy], assets_attributes: [:id, :media_type_id, :upload, :status,:_destroy]
       )

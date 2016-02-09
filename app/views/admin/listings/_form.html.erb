@@ -16,7 +16,7 @@
     <div class="row">
       <div class="col-md-12 all">
         <div class="form-group-last">
-          <%= f.select(:department_id, options_for_select(Department.all.map{|s|[s.value, s.id]}, selected_key = f.object.department_id), {}, { :class => 'form-control' }) %>
+          <%= f.select(:department_id, options_for_select(Department.all.map{|s|[s.value, s.id]}, selected_key = f.object.department_id), {}, { class: 'form-control', tabindex: 1 }) %>
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
       <div class="col-md-12 all">
         <div class="form-group">
           <%= f.label :agent_id %><br>
-          <%= f.select(:agent_id, options_for_select(Agent.where("user_id = ?", current_user.id).map{|s|[s.name, s.id]}, selected_key = f.object.agent_id), {}, { :class => 'form-control' }) %>
+          <%= f.select(:agent_id, options_for_select(Agent.where("user_id = ?", current_user.id).map{|s|[s.name, s.id]}, selected_key = f.object.agent_id), {}, { class: 'form-control', tabindex: 2 }) %>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
       <div class="col-md-12 all">
         <div class="form-group-last">
           <%= f.label :branch_id %><br>
-          <%= f.select(:branch_id, '', {}, {:class => 'form-control'}) %>
+          <%= f.select(:branch_id, '', {}, { class: 'form-control', tabindex: 3 }) %>
         </div>
       </div>
     </div>
@@ -48,31 +48,31 @@
       <div class="col-md-4 all">
         <div class="form-group">
           <%= f.label :availability_id %><br>
-          <%= f.select(:availability_id, options_for_select(Availability.all.map{|s|[s.value, s.id]}, selected_key = f.object.availability_id), {:include_blank => 'Choose availability...'}, { :class => 'form-control' }) %>
+          <%= f.select(:availability_id, options_for_select(Availability.all.map{|s|[s.value, s.id]}, selected_key = f.object.availability_id), {:include_blank => 'Choose availability...'}, { class: 'form-control', tabindex: 4 }) %>
         </div>
       </div>
       <div class="col-md-4 all">
         <div class="form-group">
           <%= f.label :style_id %><br>
-          <%= f.select(:style_id, options_for_select(Style.all.map{|s|[s.value, s.id]}, selected_key = f.object.style_id), {:include_blank => 'Choose style...'}, { :class => 'form-control' }) %>
+          <%= f.select(:style_id, options_for_select(Style.all.map{|s|[s.value, s.id]}, selected_key = f.object.style_id), {:include_blank => 'Choose style...'}, { class: 'form-control', tabindex: 5 }) %>
         </div>
       </div>
       <div class="col-md-4 all">
         <div class="form-group">
           <%= f.label :type_id %><br>
-          <%= f.select(:type_id, options_for_select(Type.all.map{|s|[s.value, s.id]}, selected_key = f.object.type_id), {:include_blank => 'Choose type...'}, { :class => 'form-control' }) %>
+          <%= f.select(:type_id, options_for_select(Type.all.map{|s|[s.value, s.id]}, selected_key = f.object.type_id), {:include_blank => 'Choose type...'}, { class: 'form-control', tabindex: 6 }) %>
         </div>
       </div>
       <div class="col-md-4 all">
         <div class="form-group-last">
           <%= f.label :age_id %><br>
-          <%= f.select(:age_id, options_for_select(Age.all.map{|s|[s.value, s.id]}, selected_key = f.object.age_id), {:include_blank => 'Choose age...'}, { :class => 'form-control' }) %>
+          <%= f.select(:age_id, options_for_select(Age.all.map{|s|[s.value, s.id]}, selected_key = f.object.age_id), {:include_blank => 'Choose age...'}, { class: 'form-control', tabindex: 7 }) %>
         </div>
       </div>
       <div class="col-md-4 for-sale">
         <div class="form-group-last">
           <%= f.label :sale_type_id %><br>
-          <%= f.select(:sale_type_id, options_for_select(SaleType.all.map{|s|[s.value, s.id]}, selected_key = f.object.sale_type_id), {:include_blank => 'Choose sale type...'}, { :class => 'form-control' }) %>
+          <%= f.select(:sale_type_id, options_for_select(SaleType.all.map{|s|[s.value, s.id]}, selected_key = f.object.sale_type_id), {:include_blank => 'Choose sale type...'}, { class: 'form-control', tabindex: 8 }) %>
         </div>
       </div>
     </div>
@@ -84,37 +84,37 @@
       <div class="col-md-6">
         <div class="form-group all">
           <%= f.label :address_1 %><br>
-          <%= f.text_field :address_1, class: 'form-control' %>
+          <%= f.text_field :address_1, { class: 'form-control', tabindex: 9 } %>
         </div>
         <div class="form-group all">
           <%= f.label :address_3 %><br>
-          <%= f.text_field :address_3, class: 'form-control' %>
+          <%= f.text_field :address_3, { class: 'form-control', tabindex: 11 } %>
         </div>
         <div class="form-group all">
           <%= f.label :town_city %><br>
-          <%= f.text_field :town_city, class: 'form-control' %>
+          <%= f.text_field :town_city, { class: 'form-control', tabindex: 13 } %>
         </div>
         <div class="form-group all">
           <%= f.label :postcode %><br>
-          <%= f.text_field :postcode, class: 'form-control' %>
+          <%= f.text_field :postcode, { class: 'form-control', tabindex: 15 } %>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group all">
           <%= f.label :address_2 %><br>
-          <%= f.text_field :address_2, class: 'form-control' %>
+          <%= f.text_field :address_2, { class: 'form-control', tabindex: 10 } %>
         </div>
         <div class="form-group all">
           <%= f.label :address_4 %><br>
-          <%= f.text_field :address_4, class: 'form-control' %>
+          <%= f.text_field :address_4, { class: 'form-control', tabindex: 12 } %>
         </div>
         <div class="form-group all">
           <%= f.label :county %><br>
-          <%= f.text_field :county, class: 'form-control' %>
+          <%= f.text_field :county, { class: 'form-control', tabindex: 14 } %>
         </div>
         <div class="form-group all">
           <%= f.label :country %><br>
-          <%= f.text_field :country, class: 'form-control' %>
+          <%= f.text_field :country, { class: 'form-control', tabindex: 16 } %>
         </div>
       </div>
     </div>
@@ -122,7 +122,7 @@
       <div class="col-md-12">
         <div class="form-group all">
           <%= f.label :display_address %><br>
-          <%= f.text_field :display_address, class: 'form-control' %>
+          <%= f.text_field :display_address, { class: 'form-control', tabindex: 17 } %>
         </div>
       </div>
     </div>
@@ -130,19 +130,19 @@
       <div class="col-md-6">
         <div class="form-group all">
           <%= f.label :latitude %><br>
-          <%= f.text_field :latitude, class: 'form-control' %>
+          <%= f.text_field :latitude, { class: 'form-control', tabindex: 18 } %>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group all">
           <%= f.label :longitude %><br>
-          <%= f.text_field :longitude, class: 'form-control' %>
+          <%= f.text_field :longitude, { class: 'form-control', tabindex: 19 } %>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
-        <a id="listing_lookup_postcode" href class="btn btn-primary btn-block">Lookup Location from Postcode</a>
+        <a id="listing_lookup_postcode" href class="btn btn-primary btn-block" tabindex="20">Lookup Location from Postcode</a>
       </div>
     </div>
   </div>
@@ -153,31 +153,31 @@
       <div class="col-md-4">
         <div class="form-group all">
           <%= f.label :bedrooms %><br>
-          <%= f.text_field :bedrooms, class: 'form-control' %>
+          <%= f.text_field :bedrooms, { class: 'form-control', tabindex: 21 } %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group all">
           <%= f.label :bathrooms %><br>
-          <%= f.text_field :bathrooms, class: 'form-control' %>
+          <%= f.text_field :bathrooms, { class: 'form-control', tabindex: 22 } %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group all">
           <%= f.label :ensuites %><br>
-          <%= f.text_field :ensuites, class: 'form-control' %>
+          <%= f.text_field :ensuites, { class: 'form-control', tabindex: 23 } %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group all">
           <%= f.label :receptions %><br>
-          <%= f.text_field :receptions, class: 'form-control' %>
+          <%= f.text_field :receptions, { class: 'form-control', tabindex: 24 } %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group all">
           <%= f.label :kitchens %><br>
-          <%= f.text_field :kitchens, class: 'form-control' %>
+          <%= f.text_field :kitchens, { class: 'form-control', tabindex: 25 } %>
         </div>
       </div>
     </div>
@@ -185,7 +185,7 @@
       <div class="col-md-12">
         <div class="form-group all">
           <%= f.label :summary %><br>
-          <%= f.text_area :summary, class: 'form-control' %>
+          <%= f.text_area :summary, { class: 'form-control', tabindex: 26 } %>
         </div>
       </div>
     </div>
@@ -193,7 +193,7 @@
       <div class="col-md-12">
         <div class="form-group-last all">
           <%= f.label :description %><br>
-          <%= f.cktext_area :description%>
+          <%= f.cktext_area :description, { tabindex: 27 }%>
         </div>
       </div>
     </div>
@@ -205,31 +205,31 @@
       <div class="col-md-4">
         <div class="form-group">
           <%= f.label :price %><br>
-          <%= f.text_field :price, class: 'form-control' %>
+          <%= f.text_field :price, { class: 'form-control', tabindex: 28 } %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <%= f.label :qualifier_id %><br>
-          <%= f.select(:qualifier_id, options_for_select(Qualifier.all.map{|s|[s.value, s.id]}, selected_key = f.object.qualifier_id), {:include_blank => 'Choose qualifier...'}, { :class => 'form-control' }) %>
+          <%= f.select(:qualifier_id, options_for_select(Qualifier.all.map{|s|[s.value, s.id]}, selected_key = f.object.qualifier_id), {:include_blank => 'Choose qualifier...'}, { class: 'form-control', tabindex: 29 }) %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <%= f.label :tenure_id %><br>
-          <%= f.select(:tenure_id, options_for_select(Tenure.all.map{|s|[s.value, s.id]}, selected_key = f.object.tenure_id), {:include_blank => 'Choose tenure...'}, { :class => 'form-control' }) %>
+          <%= f.select(:tenure_id, options_for_select(Tenure.all.map{|s|[s.value, s.id]}, selected_key = f.object.tenure_id), {:include_blank => 'Choose tenure...'}, { class: 'form-control', tabindex: 30 }) %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group-last">
           <%= f.label :estimated_rental_income %><br>
-          <%= f.text_field :estimated_rental_income, class: 'form-control' %>
+          <%= f.text_field :estimated_rental_income, { class: 'form-control', tabindex: 31 } %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group-last">
           <%= f.label :price_on_application %>
-          <%= f.select 'price_on_application', options_for_select([['Yes',true],['No',false]], selected_key = f.object.price_on_application), {}, {:class => 'form-control'} %>
+          <%= f.select 'price_on_application', options_for_select([['Yes',true],['No',false]], selected_key = f.object.price_on_application), {}, { class: 'form-control', tabindex: 32 } %>
         </div>
       </div>
     </div>
@@ -241,19 +241,19 @@
       <div class="col-md-4">
         <div class="form-group">
           <%= f.label :rent %><br>
-          <%= f.text_field :rent, class: 'form-control' %>
+          <%= f.text_field :rent, { class: 'form-control', tabindex: 33 } %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <%= f.label :frequency_id %><br>
-          <%= f.select(:frequency_id, options_for_select(Frequency.all.map{|s|[s.value, s.id]}, selected_key = f.object.frequency_id), {:include_blank => 'Choose frequency...'}, { :class => 'form-control' }) %>
+          <%= f.select(:frequency_id, options_for_select(Frequency.all.map{|s|[s.value, s.id]}, selected_key = f.object.frequency_id), {:include_blank => 'Choose frequency...'}, { class: 'form-control', tabindex: 34 }) %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <%= f.label :rent_on_application %>
-          <%= f.select 'rent_on_application', options_for_select([['Yes',1],['No',0]], selected_key = f.object.rent_on_application), {}, {:class => 'form-control'} %>
+          <%= f.select 'rent_on_application', options_for_select([['Yes',1],['No',0]], selected_key = f.object.rent_on_application), {}, { class: 'form-control', tabindex: 35 } %>
         </div>
       </div>
     </div>
@@ -261,7 +261,7 @@
       <div class="col-md-12">
         <div class="form-group-last">
           <%= f.label :rental_detail %><br>
-          <%= f.text_area :rental_detail, class: 'form-control' %>
+          <%= f.text_area :rental_detail, { class: 'form-control', tabindex: 36 } %>
         </div>
       </div>
     </div>
@@ -274,7 +274,7 @@
         <%= render 'feature_fields', f: feature %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'Add Feature', f, :features, class: 'btn btn-primary' %>
+        <%= link_to_add_association 'Add Feature', f, :features, {class: 'btn btn-primary', tabindex: 37} %>
       </div>
     </div>
   </div>
@@ -286,7 +286,7 @@
         <%= render 'flag_fields', f: flag %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'Add Flag', f, :flags, class: 'btn btn-primary' %>
+        <%= link_to_add_association 'Add Flag', f, :flags, {class: 'btn btn-primary', tabindex:38 } %>
       </div>
     </div>
   </div>
@@ -298,7 +298,7 @@
         <%= render 'asset_fields', f: asset %>
       <% end %>
       <div class="links">
-        <%= link_to_add_association 'Add Asset', f, :assets, class: 'btn btn-primary' %>
+        <%= link_to_add_association 'Add Asset', f, :assets, {class: 'btn btn-primary', tabindex: 39} %>
       </div>
     </div>
   </div>  
@@ -309,25 +309,25 @@
       <div class="col-md-3 all">
         <div class="form-group-last">
           <%= f.label :featured %>
-          <%= f.select 'featured', options_for_select([['Yes',true],['No',false]], selected_key = f.object.featured), {}, {:class => 'form-control'} %>
+          <%= f.select 'featured', options_for_select([['Yes',true],['No',false]], selected_key = f.object.featured), {}, { class: 'form-control', tabindex: 40 } %>
         </div>
       </div>
       <div class="col-md-3 for-sale">
         <div class="form-group-last">
           <%= f.label :development %>
-          <%= f.select 'development', options_for_select([['Yes',true],['No',false]], selected_key = f.object.development), {}, {:class => 'form-control'} %>
+          <%= f.select 'development', options_for_select([['Yes',true],['No',false]], selected_key = f.object.development), {}, { class: 'form-control', tabindex: 41 } %>
         </div>
       </div>
       <div class="col-md-3 for-sale">
         <div class="form-group-last">
           <%= f.label :investment %>
-          <%= f.select 'investment', options_for_select([['Yes',true],['No',false]], selected_key = f.object.investment), {}, {:class => 'form-control'} %>
+          <%= f.select 'investment', options_for_select([['Yes',true],['No',false]], selected_key = f.object.investment), {}, { class: 'form-control', tabindex: 42 } %>
         </div>
       </div>
       <div class="col-md-3 to-let">
         <div class="form-group-last">
           <%= f.label :student %>
-          <%= f.select 'student', options_for_select([['Yes',true],['No',false]], selected_key = f.object.student), {}, {:class => 'form-control'} %>
+          <%= f.select 'student', options_for_select([['Yes',true],['No',false]], selected_key = f.object.student), {}, { class: 'form-control', tabindex: 43 } %>
         </div>
       </div>
     </div>
@@ -339,7 +339,7 @@
       <div class="col-md-12">
         <div class="form-group-last all">
           <%= f.label :status %>
-          <%= f.select 'status', options_for_select([['Active',1],['Inactive',0]], selected_key = f.object.status), {}, {:class => 'form-control'} %>
+          <%= f.select 'status', options_for_select([['Active',1],['Inactive',0]], selected_key = f.object.status), {}, { class: 'form-control', tabindex: 44 } %>
         </div>
       </div>
     </div>
@@ -347,7 +347,7 @@
   <div class="well">
     <div class="row">
       <div class="col-md-6">
-        <%= f.submit class:'btn btn-primary' %>
+        <%= f.submit class:'btn btn-primary', tabindex: 45 %>
       </div>
       <div class="col-md-6">
 

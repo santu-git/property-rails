@@ -11,10 +11,26 @@
  * file per style scope.
  *
  */
+// Import variables to override bootstrap
 @import "variables/index";
+
+// Rails Sprockets
 @import "bootstrap-sprockets";
+
+// Bootstrap
 @import "bootstrap";
-@import "bootstrap/index";
+
+// Font awesome icon font styles
 @import "font-awesome";
-@import "admin/listings";
+
+// Import functions
+@import "functions/index";
+
+// Elements styles
+@import "elements/index";
+
+// Classes and styles overriding bootstrap defaults
+@import "bootstrap/index";
+
+// Class styles
 @import "classes/index";
