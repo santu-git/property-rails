@@ -6,7 +6,7 @@ class Api::V1::ListingsController < Api::V1::BaseController
 
   def search
     # Get listings for current user
-    listings = Listing.belongs_to_current_user(@current_user) 
+    listings = Listing.belongs_to_current_user(@current_user)
 
     # Get the department (either letting or sales)
     listings = listings.where(
@@ -16,11 +16,23 @@ class Api::V1::ListingsController < Api::V1::BaseController
     # Geo lookup
     listings = listings.near(
       [
-        params[:latitude], 
+        params[:latitude],
         params[:longitude]
-      ], 
+      ],
       params[:distance]
     )
+
+    # Bedrooms between
+    listings = listings.where(
+      'bedrooms >= ? AND bedrooms <= ?', params[:min_beds], params[:max_beds]
+    )
+
+    # Property type
+    unless params[:type].to_i == 0
+      listings = listings.where(
+        'type_id = ?', params[:type]
+      )
+    end
 
     # Pagination
     listings = listings.paginate(
@@ -29,7 +41,7 @@ class Api::V1::ListingsController < Api::V1::BaseController
     )
 
     #render json: listings
-    render json: listings
+    render json: {listings: listings, total: listings.total_entries, page: params[:page], size: params[:size]}
   end
 
   rescue_from(ActionController::UnpermittedParameters) do |pme|

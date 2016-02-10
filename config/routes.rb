@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       resources :agents, only: [:index]
       resources :branches, only: [:show]
       get 'listings/search'
+      get 'categorizations/index', path: 'categorizations'
     end
   end
 
