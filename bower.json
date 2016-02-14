@@ -1,0 +1,21 @@
+{
+  "name": "EveryStreet",
+  "homepage": "https://github.com/signalfire/property-rails",
+  "authors": [
+    "Robert Coster <rob@signalfire.co.uk>"
+  ],
+  "description": "property portal using rails",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.0"
+  }
+}
