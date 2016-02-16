@@ -1,41 +1,10 @@
 <h1>Assets <%= link_to 'Add New Asset', new_admin_asset_path, class: 'btn btn-primary pull-right' %></h1>
 <p>Shown below are the assets you've uploaded</p>
 <%= render 'shared/alerts' %>
-<table class="table table-bordered">
-  <tr>
-    <th width="5%" style="text-align:center">ID</th>
-    <th width="4%" style="text-align:center">File</td>
-    <th>Listing</th>
-    <th width="10%">Status</th>
-    <th width="10%">Actions</th>
-  </tr>
-  <% if @assets.each do |asset| %>
-    <tr>
-      <td style="text-align:center"><%= asset.id %></td>
-      <td style="text-align:center"><a href="<%= asset.upload.url %>" target="_blank"><i class="<%= paperclip_icon_url(asset.upload) %>" style="font-size:24px"></i></a></td>
-      <td><%= asset.listing.display_address %> (<a href="<%= edit_admin_listing_path(asset.listing) %>">Listing ID: <%= asset.listing.id %></a>)</td>
-      <td><%= asset.status === 1 ? 'Active' : 'Inactive' %></td>
-      <td>
-        <table width="100%">
-          <tr>
-            <td width="45%"><%= link_to '<i class="fa fa-edit"></i>'.html_safe, edit_admin_asset_path(asset), class: 'btn btn-primary btn-block' %></td>
-            <td width="10%"></td>
-            <td width="45%"><%= link_to '<i class="fa fa-trash"></i>'.html_safe, admin_asset_path(asset), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  <% end.empty? %>
-    <tr>
-      <td colspan="5">You have no assets</td>
-    </tr>
-  <% end %>
-</table>
-<%= will_paginate @assets, renderer: BootstrapPagination::Rails %>
-<div class="row">
-  <div class="col-md-2">
+<div class="row" data-ng-controller="AssetsController">
+  <div class="col-md-2" data-ng-repeat="asset in assets">
     <div class="thumbnail">
-      <img width="100%" height="140" style="width:100%;height:140px">
+      <img data-ng-src="{{asset.upload}}" width="100%" height="140" style="width:100%;height:140px">
       <div class="buttons" style="clear:both;height:34px">
         <div style="float:left;width:50%">
           <button class="btn btn-primary btn-block"><i class="fa fa-edit"></i></button>
@@ -45,30 +14,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-2">
-    <div class="thumbnail">
-      <img width="100%" height="140" style="width:100%;height:140px">
-      <div class="buttons" style="clear:both;height:34px">
-        <div style="float:left;width:50%">
-          <button class="btn btn-primary btn-block"><i class="fa fa-edit"></i></button>
-        </div>
-        <div style="float:left;width:50%">
-          <button class="btn btn-danger btn-block"><i class="fa fa-trash"></i></button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="thumbnail"></div>
-  </div>
-  <div class="col-md-2">
-    <div class="thumbnail"></div>
-  </div>
-  <div class="col-md-2">
-    <div class="thumbnail"></div>
-  </div>
-  <div class="col-md-2">
-    <div class="thumbnail"></div>
   </div>
 </div>

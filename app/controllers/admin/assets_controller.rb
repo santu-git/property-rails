@@ -2,13 +2,19 @@ class Admin::AssetsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+  end
+
+  def json
     # Get assets
     @assets = Asset.belongs_to_current_user(current_user).paginate(
       :page => params[:page],
       :per_page => 10
     )
     # Check with pundit if the user has permission
-    authorize @assets
+    authorize @assets, :json?
+
+    render json: @assets
+
   end
 
   def new

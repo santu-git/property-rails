@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'branches/json'
     get 'dashboard/index'
     get 'geo/lookup'
+    get 'assets/json'
     resources :ages
     resources :availabilities
     resources :departments

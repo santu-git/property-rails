@@ -1,5 +1,4 @@
 class AssetSerializer < ActiveModel::Serializer
-  attributes :upload
+  attributes :upload, :media_type_id
   belongs_to :listing
-  belongs_to :media_type
 end
