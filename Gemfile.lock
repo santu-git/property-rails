@@ -86,6 +86,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
+    database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     devise (3.5.3)
       bcrypt (~> 3.0)
@@ -101,6 +102,11 @@ GEM
       railties (>= 4.0, < 5.1)
     erubis (2.7.0)
     execjs (2.6.0)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.6.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     font-awesome-rails (4.5.0.0)
       railties (>= 3.2, < 5.0)
     geocoder (1.2.14)
@@ -244,8 +250,10 @@ DEPENDENCIES
   ckeditor
   cocoon
   coffee-rails (~> 4.1.0)
+  database_cleaner
   devise
   dotenv-rails
+  factory_girl_rails
   font-awesome-rails
   geocoder
   jbuilder (~> 2.0)
