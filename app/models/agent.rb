@@ -4,7 +4,7 @@ class Agent < ActiveRecord::Base
   has_many :branches
   has_many :listings
   # Validations
-  validates :user_id, presence: true, numericality: { only_integer: true }
+  validates :user, presence: true
   validates :name, presence: true, length: { in: 3..50 }
   validates :status, presence: true, numericality: { only_integer: true }
   # Scopes
