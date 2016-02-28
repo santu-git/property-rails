@@ -3,7 +3,7 @@ class Branch < ActiveRecord::Base
   belongs_to :agent
   has_many :listing
   # Validations
-  validates :agent_id, presence: true, numericality: { only_integer: true }
+  validates :agent, presence: true
   validates :name, presence: true, length: { in: 3..50 }
   validates :address_1, presence: true, length: { in: 3..50 }
   validates :address_2, length: { in: 0..50 }
