@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'dotenv-rails', :groups => [:development, :test]
 gem 'rails', '4.2.5'
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 gem 'sass-rails', '~> 5.0'
@@ -27,9 +26,8 @@ gem 'active_model_serializers', :git => 'https://github.com/rails-api/active_mod
 gem 'pundit'
 gem 'ckeditor'
 
-gem 'simplecov', :require => false, :group => :test
-
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'byebug'
   gem 'rspec-rails'
   gem 'capybara'
@@ -40,4 +38,8 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+end
+
+group :test do
+  gem 'simplecov', :require => false
 end
