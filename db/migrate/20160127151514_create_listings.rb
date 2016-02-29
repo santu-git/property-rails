@@ -1,7 +1,6 @@
 class CreateListings < ActiveRecord::Migration
   def change
     create_table :listings do |t|
-      t.belongs_to :agent, index: true
       t.belongs_to :branch, index: true
       t.belongs_to :age, index: true
       t.belongs_to :availability, index: true

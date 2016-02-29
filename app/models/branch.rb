@@ -4,11 +4,11 @@ class Branch < ActiveRecord::Base
   has_many :listing
   # Validations
   validates :agent, presence: true
-  validates :name, presence: true, length: { in: 3..50 }
-  validates :address_1, presence: true, length: { in: 3..50 }
-  validates :address_2, length: { in: 0..50 }
-  validates :address_3, length: { in: 0..50 }
-  validates :address_4, length: { in: 0..50 }
+  validates :name, presence: true, length: { maximum:50}
+  validates :address_1, presence: true, length: { maximum:50}
+  validates :address_2, length: { maximum:50}
+  validates :address_3, length: { maximum:50}
+  validates :address_4, length: { maximum:50}
   validates :town_city, presence: true, length: { in: 3..50 }
   validates :county, presence: true, length: { in: 3..50 }
   validates :postcode, presence: true, length: { in: 7..10 }

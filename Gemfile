@@ -27,6 +27,8 @@ gem 'active_model_serializers', :git => 'https://github.com/rails-api/active_mod
 gem 'pundit'
 gem 'ckeditor'
 
+gem 'simplecov', :require => false, :group => :test
+
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'

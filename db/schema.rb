@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 20160208184415) do
   end
 
   create_table "listings", force: :cascade do |t|
-    t.integer  "agent_id",                limit: 4
     t.integer  "branch_id",               limit: 4
     t.integer  "age_id",                  limit: 4
     t.integer  "availability_id",         limit: 4
@@ -163,7 +162,6 @@ ActiveRecord::Schema.define(version: 20160208184415) do
   end
 
   add_index "listings", ["age_id"], name: "index_listings_on_age_id", using: :btree
-  add_index "listings", ["agent_id"], name: "index_listings_on_agent_id", using: :btree
   add_index "listings", ["availability_id"], name: "index_listings_on_availability_id", using: :btree
   add_index "listings", ["branch_id"], name: "index_listings_on_branch_id", using: :btree
   add_index "listings", ["department_id"], name: "index_listings_on_department_id", using: :btree
