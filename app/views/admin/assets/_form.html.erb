@@ -16,7 +16,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="form-group-last">
-          <%= f.select(:listing_id, options_for_select(Listing.joins(:agent).where('agents.user_id = ?', current_user.id).map{|s|[s.display_address, s.id]}, selected_key = f.object.listing_id), {}, { :class => 'form-control' }) %>
+          <%= f.select(:listing_id, options_for_select(Listing.joins(branch: :agent).where('agents.user_id = ?', current_user.id).map{|s|[s.display_address, s.id]}, selected_key = f.object.listing_id), {}, { :class => 'form-control' }) %>
         </div>
       </div>
     </div>

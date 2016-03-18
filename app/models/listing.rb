@@ -81,7 +81,7 @@ class Listing < ActiveRecord::Base
 
   # Scopes
   def self.belongs_to_current_user(current_user)
-    self.joins(:branch, :agent).where(
+    self.joins(branch: :agent).where(
       'agents.user_id = ?', current_user.id
     )
   end

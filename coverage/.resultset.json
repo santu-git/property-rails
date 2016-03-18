@@ -1091,11 +1091,13 @@
         1,
         1,
         1,
-        1,
-        1,
+        null,
+        null,
         1,
         1,
         null,
+        null,
+        1,
         null,
         1,
         null,
@@ -1190,8 +1192,6 @@
         1,
         1,
         1,
-        1,
-        1,
         null,
         1,
         1,
@@ -1215,6 +1215,7 @@
         1,
         null,
         null,
+        1,
         1,
         null,
         1,
@@ -1723,22 +1724,6 @@
         0,
         0
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/geo_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
       "/Users/rcoster/Rails/everystreet/app/controllers/admin/listings_controller.rb": [
         0,
         0,
@@ -1930,6 +1915,6 @@
         0
       ]
     },
-    "timestamp": 1458212135
+    "timestamp": 1458319448
   }
 }
