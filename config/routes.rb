@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'branches/json'
     get 'dashboard/index'
-    get 'geo/lookup'
     get 'assets/json'
     resources :ages
     resources :availabilities
@@ -28,28 +27,6 @@ Rails.application.routes.draw do
     resources :branches
     resources :listings
     resources :assets
-    resources :users, only: [:index], path: 'user'
-    post 'users/token', path: 'user/token'
-  end
-
-  namespace :api do
-    namespace :v1 do
-      resources :ages, only: [:index]
-      resources :availabilities, only: [:index]
-      resources :departments, only: [:index]
-      resources :frequencies, only: [:index]
-      resources :media_types, only: [:index], path: 'mediatypes'
-      resources :qualifiers, only: [:index]
-      resources :sale_types, only: [:index], path: 'saletypes'
-      resources :styles, only: [:index]
-      resources :tenures, only: [:index]
-      resources :types, only: [:index]
-      resources :users, only: [:index], path: 'user'
-      resources :agents, only: [:index]
-      resources :branches, only: [:show]
-      get 'listings/search'
-      get 'categorizations/index', path: 'categorizations'
-    end
   end
 
   devise_for :users,

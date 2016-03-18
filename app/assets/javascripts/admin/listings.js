@@ -47,23 +47,6 @@ ready = function() {
     loadBranchesForAgent();
   });
 
-  $('#listing_lookup_postcode').on('click', function(e){
-    if ($('#listing_postcode').val().length >= 3){
-      var url = '/admin/geo/lookup?postcode=' + $('#listing_postcode').val();
-      $.getJSON(url)
-        .done(function(data){
-          $('#listing_longitude').val(data[1]);
-          $('#listing_latitude').val(data[0]);
-        })
-        .fail(function(jqXHR, textStatus, error){
-          window.alert('Unable to find location');
-        });
-    }else{
-      window.alert('Please enter a postcode');
-    }
-    e.preventDefault();
-  });
-
   $(document).on('change', '.btn-file :file', function() {
     var input = $(this), 
     numFiles = input.get(0).files ? input.get(0).files.length : 1,

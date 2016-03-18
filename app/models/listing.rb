@@ -30,8 +30,6 @@ class Listing < ActiveRecord::Base
   validates :county, presence: true, length: { in: 3..50 }
   validates :postcode, presence: true, length: { in: 7..10 }
   validates :country, presence: true, length: { in: 3..50 }
-  validates :latitude, presence: true, numericality: true
-  validates :longitude, presence: true, numericality: true
   validates :display_address, presence: true, length: { in: 3..200 }
   validates :bedrooms, presence: true, numericality: true
   validates :bathrooms, presence: true, numericality: true
@@ -65,7 +63,8 @@ class Listing < ActiveRecord::Base
   nilify_blanks :types => [:text]
 
   #Geocoder
-  reverse_geocoded_by :latitude, :longitude
+  geocoded_by :postcode
+  after_validation :geocode
 
   def is_for_sale?
     department_id == 1
