@@ -3,6 +3,10 @@ class AgentPolicy < ApplicationPolicy
   def index?
     true
   end
+  # Means all users can see the json function
+  def json?
+    true
+  end
   # Covers new and create methods and means logged in user can
   # create a new agent
   def create?

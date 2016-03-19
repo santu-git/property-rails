@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get 'branches/json'
-    get 'dashboard/index'
+    get 'agents/json'
     get 'assets/json'
+    get 'branches/json'
+    get 'departments/json'
+    get 'dashboard/index'
     resources :ages
     resources :availabilities
     resources :departments

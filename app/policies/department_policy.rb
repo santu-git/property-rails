@@ -3,6 +3,10 @@ class DepartmentPolicy < ApplicationPolicy
   def index?
     true
   end
+  # Means that users can all see the json function
+  def json?
+    true
+  end
   # Covers new and create methods and means a new item can be created
   # if the user logged in is an admin user
   def create?

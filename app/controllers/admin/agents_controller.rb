@@ -11,6 +11,15 @@ class Admin::AgentsController < ApplicationController
     authorize @agents
   end
 
+  def json
+    # Get all current user agents
+    @agents = current_user.agents.all
+    # Check permissions with pundit
+    authorize @agents
+    # Return json
+    render json: @agents
+  end
+
   def new
     # Create new instance of agent
     @agent = Agent.new

@@ -11,6 +11,16 @@ class Admin::DepartmentsController < ApplicationController
     authorize @departments
   end
 
+  def json
+    # Get assets
+    @departments = Department.all
+    # Check with pundit if the user has permission
+    authorize @departments, :json?
+
+    render json: @departments
+
+  end  
+
   def new
     # Create new instance of department
     @department = Department.new

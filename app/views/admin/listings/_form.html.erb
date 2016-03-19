@@ -1,4 +1,4 @@
-<%= form_for [:admin, @listing], :html => { :multipart => true } do |f| %>
+<%= form_for [:admin, @listing], :html => { :multipart => true, 'data-ng-controller'=>'ListingController' } do |f| %>
   <% if @listing.errors.any? %>
     <div class="alert alert-danger alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -16,7 +16,7 @@
     <div class="row">
       <div class="col-md-12 all">
         <div class="form-group-last">
-          <%= f.select(:department_id, options_for_select(Department.all.map{|s|[s.value, s.id]}, selected_key = f.object.department_id), {}, { class: 'form-control', tabindex: 1 }) %>
+          <select id="listing[department_id]" name="listing[department_id]" class="form-control" data-ng-model="department" ng-options="department.value for department in departments track by department.id" data-ng-change="changeDepartment()"></select>
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
       <div class="col-md-12 all">
         <div class="form-group">
           <%= f.label :agent_id %><br>
-          <%= f.select(:agent_id, options_for_select(Agent.where("user_id = ?", current_user.id).map{|s|[s.name, s.id]}, selected_key = f.object.agent_id), {}, { class: 'form-control', tabindex: 2 }) %>
+          <select id="listing[agent_id]" name="listing[agent_id]" class="form-control" data-ng-model="agent" ng-options="agent.name for agent in agents track by agent.id" data-ng-change="changeAgent()"></select>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
       <div class="col-md-12 all">
         <div class="form-group-last">
           <%= f.label :branch_id %><br>
-          <%= f.select(:branch_id, '', {}, { class: 'form-control', tabindex: 3 }) %>
+          <select id="listing[branch_id]" name="listing[branch_id]" class="form-control" data-ng-model="branch" ng-options="branch.name for branch in branches track by branch.id"></select>
         </div>
       </div>
     </div>
