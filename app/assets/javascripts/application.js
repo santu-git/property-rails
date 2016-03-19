@@ -17,6 +17,7 @@
 //= require angular/angular
 //= require turbolinks
 //= require cocoon
+//= require_directory ./admin
 //= require angular/everystreet
 //= require_directory ./angular/services
 //= require_directory ./angular/controllers
