@@ -24,7 +24,7 @@ Uses the following gems:
 * pundit
 * ckeditor
 
-Will need a .env file created in the root of the application with the following keys:
+Will need a .env file created in the root of the application to run with the following keys:
 
 * S3_BUCKET_NAME
 * AWS_ACCESS_KEY_ID
@@ -40,10 +40,8 @@ Will need a .env file created in the root of the application with the following 
 * TEST_SECRET_KEY_BASE
 * (x)PRODUCTION_SECRET_KEY_BASE
 
-(x) Not necessary in the .env as you would have them in the hosting environment
-
 Run rake db:migrate to create database
 
 Run rake db:seed to seed database with initial values
 
-Testing is coming next
+Tests run and are in Rspec. There is 99% coverage according to rcov. Currently I need to mock calls to Google geocoder as haven't yet and tests will cause over-limit requests to Google...
