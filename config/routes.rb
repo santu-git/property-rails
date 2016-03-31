@@ -11,7 +11,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'agents/json'
-    get 'assets/json'
     get 'branches/json'
     get 'departments/json'
     get 'dashboard/index'

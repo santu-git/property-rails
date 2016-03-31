@@ -28,7 +28,8 @@ class Admin::AgesController < ApplicationController
       flash[:notice] = 'Age successfully created'
       redirect_to admin_ages_path
     else
-      render 'new'
+      flash[:alert] = 'Unable to create age'      
+      render :new
     end
   end
 
@@ -49,7 +50,8 @@ class Admin::AgesController < ApplicationController
       flash[:notice] = 'Age successfully updated'
       redirect_to admin_ages_path
     else
-      render 'edit'
+      flash[:alert] = 'Unable to update age'            
+      render :edit
     end
   end
 
@@ -59,10 +61,8 @@ class Admin::AgesController < ApplicationController
     # Check with pundit if can be destroyed
     authorize @age
     # Survived so destroy
-    if @age && @age.destroy
-      flash[:notice] = 'Agent successfully removed'
-    else
-      flash[:alert] = 'Unable to remove age'
+    if @age.destroy
+      flash[:notice] = 'Age successfully removed'
     end
     redirect_to admin_ages_path
   end

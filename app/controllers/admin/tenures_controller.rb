@@ -28,6 +28,7 @@ class Admin::TenuresController < ApplicationController
       flash[:notice] = 'Tenure successfully created'
       redirect_to admin_tenures_path
     else
+      flash[:alert] = 'Unable to create tenure'            
       render 'new'
     end
   end
@@ -45,10 +46,11 @@ class Admin::TenuresController < ApplicationController
     # Check with pundit if the user has permission
     authorize @tenure
     # Survived so update
-    if @tenure && @tenure.update(tenure_params)
+    if @tenure.update(tenure_params)
       flash[:notice] = 'Tenure successfully updated'
       redirect_to admin_tenures_path
     else
+      flash[:alert] = 'Unable to update tenure'            
       render 'edit'
     end
   end
@@ -59,10 +61,8 @@ class Admin::TenuresController < ApplicationController
     # Check with pundit if the user has permission
     authorize @tenure
     # Survived so destroy
-    if @tenure && @tenure.destroy
+    if @tenure.destroy
       flash[:notice] = 'Tenure successfully removed'
-    else
-      flash[:alert] = 'Unable to remove tenure'
     end
     redirect_to admin_tenures_path
   end

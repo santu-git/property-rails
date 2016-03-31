@@ -28,6 +28,7 @@ class Admin::TypesController < ApplicationController
       flash[:notice] = 'Type successfully created'
       redirect_to admin_types_path
     else
+      flash[:alert] = 'Unable to create type'            
       render 'new'
     end
   end
@@ -45,10 +46,11 @@ class Admin::TypesController < ApplicationController
     # Check with pundit if the user has permission
     authorize @type
     # Survived so update
-    if @type && @type.update(type_params)
+    if @type.update(type_params)
       flash[:notice] = 'Type successfully updated'
       redirect_to admin_types_path
     else
+      flash[:alert] = 'Unable to update type'            
       render 'edit'
     end
   end
@@ -58,10 +60,8 @@ class Admin::TypesController < ApplicationController
     # Check with pundit if the user has permission
     authorize @type
     # Survived so destroy
-    if @type && @type.destroy
+    if @type.destroy
       flash[:notice] = 'Type successfully removed'
-    else
-      flash[:alert] = 'Unable to remove type'
     end
     redirect_to admin_types_path
   end

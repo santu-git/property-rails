@@ -28,6 +28,7 @@ class Admin::QualifiersController < ApplicationController
       flash[:notice] = 'Qualifier successfully created'
       redirect_to admin_qualifiers_path
     else
+      flash[:alert] = 'Unable to create qualifier'            
       render 'new'
     end
   end
@@ -45,10 +46,11 @@ class Admin::QualifiersController < ApplicationController
     # Check with pundit if the user has permission
     authorize @qualifier
     # Survived so update
-    if @qualifier && @qualifier.update(qualifier_params)
+    if @qualifier.update(qualifier_params)
       flash[:notice] = 'Qualifier successfully updated'
       redirect_to admin_qualifiers_path
     else
+      flash[:alert] = 'Unable to update qualifier'            
       render 'edit'
     end
   end
@@ -58,10 +60,8 @@ class Admin::QualifiersController < ApplicationController
     # Check with pundit if the user has permission
     authorize @qualifier
     # Survived so destroy
-    if @qualifier && @qualifier.destroy
+    if @qualifier.destroy
       flash[:notice] = 'Qualifier successfully removed'
-    else
-      flash[:alert] = 'Unable to remove qualifier'
     end
     redirect_to admin_qualifiers_path
   end

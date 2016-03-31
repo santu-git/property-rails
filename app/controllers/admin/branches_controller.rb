@@ -37,6 +37,7 @@ class Admin::BranchesController < ApplicationController
       flash[:notice] = 'Branch successfully created'
       redirect_to admin_branches_path
     else
+      flash[:alert] = 'Unable to create branch'      
       render 'new'
     end
   end
@@ -49,16 +50,16 @@ class Admin::BranchesController < ApplicationController
   end
 
   def update
-    #@branch = Branch.belongs_to_current_user(current_user).belongs_to_agent(params[:id])
     # Get the branch
     @branch = Branch.find(params[:id])
     # Check with pundit if the user has permission
     authorize @branch
     # Survived so update branch
-    if @branch && @branch.update(branch_params)
+    if @branch.update(branch_params)
       flash[:notice] = 'Branch successfully updated'
       redirect_to admin_branches_path
     else
+      flash[:alert] = 'Unable to update branch'            
       render 'edit'
     end
   end
@@ -69,10 +70,8 @@ class Admin::BranchesController < ApplicationController
     # Check with pundit if the user has permission
     authorize @branch
     # Survived so destroy branch
-    if @branch && @branch.destroy
+    if @branch.destroy
       flash[:notice] = 'Branch successfully removed'
-    else
-      flash[:alert] = 'Unable to remove branch'
     end
     redirect_to admin_branches_path
   end

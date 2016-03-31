@@ -14,4 +14,13 @@ module ApplicationHelper
     end
   end
 
+  def is_image?(field)
+    case field.content_type
+    when 'image/jpg','image/jpeg','image/png','image/gif'
+      true
+    else
+      false
+    end
+  end  
+
 end

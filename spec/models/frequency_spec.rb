@@ -18,8 +18,8 @@ describe Frequency do
     expect(frequency).to be_invalid
   end
   it 'is invalid with a duplicate value' do
-    frequency1 = create(:frequency)
-    frequency2 = build(:frequency)
+    frequency1 = create(:frequency, value: 'test')
+    frequency2 = build(:frequency, value: 'test')
     expect(frequency2).to be_invalid
   end
 end

@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :frequency do
-    value 'test'
+    sequence(:value) { |n| "test#{n}" }
   end
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'attempt to login' do
   scenario 'successfully' do
     # Setup
-    create(:user)
+    create(:user, email: 'user@example.com', password: 'password')
     # Exercise
     visit new_user_session_path
     within('#new_user') do

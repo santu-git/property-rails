@@ -28,6 +28,7 @@ class Admin::SaleTypesController < ApplicationController
       flash[:notice] = 'Sale type successfully created'
       redirect_to admin_sale_types_path
     else
+      flash[:alert] = 'Unable to create sale type'            
       render 'new'
     end
   end
@@ -45,10 +46,11 @@ class Admin::SaleTypesController < ApplicationController
     # Check with pundit if the user has permission
     authorize @saletype
     # Survived so update
-    if @saletype && @saletype.update(sale_type_params)
+    if @saletype.update(sale_type_params)
       flash[:notice] = 'Sale type successfully updated'
       redirect_to admin_sale_types_path
     else
+      flash[:alert] = 'Unable to update sale type'            
       render 'edit'
     end
   end
@@ -58,10 +60,8 @@ class Admin::SaleTypesController < ApplicationController
     # Check with pundit if the user has permission
     authorize @saletype
     # Survived so destroy
-    if @saletype && @saletype.destroy
+    if @saletype.destroy
       flash[:notice] = 'Sale type successfully removed'
-    else
-      flash[:alert] = 'Unable to remove sale type'
     end
     redirect_to admin_sale_types_path
   end

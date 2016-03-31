@@ -28,6 +28,7 @@ class Admin::MediaTypesController < ApplicationController
       flash[:notice] = 'Media type successfully created'
       redirect_to admin_media_types_path
     else
+      flash[:alert] = 'Unable to create media type'            
       render 'new'
     end
   end
@@ -45,10 +46,11 @@ class Admin::MediaTypesController < ApplicationController
     # Check with pundit if the user has permission
     authorize @mediatype
     # Survived so update
-    if @mediatype && @mediatype.update(media_type_params)
+    if @mediatype.update(media_type_params)
       flash[:notice] = 'Media type successfully updated'
       redirect_to admin_media_types_path
     else
+      flash[:alert] = 'Unable to update media type'            
       render 'edit'
     end
   end
@@ -59,10 +61,8 @@ class Admin::MediaTypesController < ApplicationController
     # Check with pundit if the user has permission
     authorize @mediatype
     # Survived so destroy
-    if @mediatype && @mediatype.destroy
+    if @mediatype.destroy
       flash[:notice] = 'Media type successfully removed'
-    else
-      flash[:alert] = 'Unable to remove media type'
     end
     redirect_to admin_media_types_path
   end

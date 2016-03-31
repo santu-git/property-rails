@@ -86,4 +86,9 @@ class Listing < ActiveRecord::Base
     )
   end
 
+  def self.joins_with_branch(listing_id)
+    self.where('listings.id = ?', listing_id).joins(:branch).where(
+      'listings.branch_id = branches.id'
+    ).select('listings.*, branches.agent_id')
+  end
 end

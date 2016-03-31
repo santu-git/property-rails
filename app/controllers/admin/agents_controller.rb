@@ -38,6 +38,7 @@ class Admin::AgentsController < ApplicationController
       flash[:notice] = 'Agent successfully created'
       redirect_to admin_agents_path
     else
+      flash[:alert] = 'Unable to create agent'                  
       render 'new'
     end
   end
@@ -59,6 +60,7 @@ class Admin::AgentsController < ApplicationController
       flash[:notice] = 'Agent successfully updated'
       redirect_to admin_agents_path
     else
+      flash[:alert] = 'Unable to update agent'                        
       render 'edit'
     end
   end
@@ -68,10 +70,8 @@ class Admin::AgentsController < ApplicationController
     # Check with pundit if the user has permission
     authorize @agent
     # Survived so destroy agent
-    if @agent && @agent.destroy
+    if @agent.destroy
       flash[:notice] = 'Agent successfully removed'
-    else
-      flash[:alert] = 'Unable to remove agent'
     end
     redirect_to admin_agents_path
   end

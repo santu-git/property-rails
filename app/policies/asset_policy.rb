@@ -3,10 +3,6 @@ class AssetPolicy < ApplicationPolicy
   def index?
     true
   end
-  # Means user can see json
-  def json?
-    true
-  end
   # Covers new and means that all logged in user can see the
   # create new media form
   def new?

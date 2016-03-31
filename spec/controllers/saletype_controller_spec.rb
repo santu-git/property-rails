@@ -4,27 +4,42 @@ describe Admin::SaleTypesController do
   describe 'GET #index' do
     context 'when authenticated as admin' do
       it 'renders the :index template' do
+        # Sign in to site as admin user
         sign_in create(:admin)
+        # Get the index action on this controller
         get :index
-        expect(response).to render_template :index
+        # Expect the response to render the index template
+        expect(response).to render_template :index     
       end
-      it 'populates an array of sale types' do
+      it 'populates an array of saletypes' do
+        # Sign into site as amin user
         sign_in create(:admin)
+        # Create an array of saletypes
         saletypes = [create(:sale_type, value:'test1'), create(:sale_type, value:'test2')]
+        # Get the index action on this controller
         get :index
-        expect(assigns(:saletypes)).to match_array(saletypes)    
+        # Expect that the controller assigns the saletypes variable which should
+        # match the array created earlier 
+        expect(assigns(:saletypes)).to match_array(saletypes)      
       end
     end
     context 'when authenticated as user' do
       it 'renders the :index template' do
+        # Sign into the site as user
         sign_in create(:user)
+        # Get the index action on the controller
         get :index
-        expect(response).to render_template :index
+        # Check that that response renders the index template
+        expect(response).to render_template :index     
       end
-      it 'populates an array of styles' do
-        sign_in create(:admin)
+      it 'populates an array of saletypes' do
+        # Create saletypes in db
         saletypes = [create(:sale_type, value:'test1'), create(:sale_type, value:'test2')]
+        # Sign into the site as a user
+        sign_in create(:user)
+        # Get the index action on this controller
         get :index
+        # Expect saletypes variable to match the array of the created saletypes
         expect(assigns(:saletypes)).to match_array(saletypes)    
       end      
     end
@@ -33,57 +48,179 @@ describe Admin::SaleTypesController do
   describe 'GET #new' do
     context 'when authenticated as admin' do    
       it 'renders the :new template' do
+        # Sign into the site as admin
         sign_in create(:admin)
+        # Get the new action on this controller
         get :new
-        expect(response).to render_template :new
+        # Expect this to render the new template
+        expect(response).to render_template :new 
       end
     end
     context 'when authenticated as user' do
       it 'renders the :new template' do
+        # Sign into the site as a user
         sign_in create(:user)
-        expect{get :new}.to raise_error(Pundit::NotAuthorizedError)
+        # Expect due to pundit authorization this to fail 
+        expect{get :new}.to raise_error(Pundit::NotAuthorizedError)    
       end
     end
   end
 
   describe 'POST #create' do
-    it 'creates a new sale type' do
-      sign_in create(:admin)
-      post :create, sale_type: attributes_for(:sale_type)
-      expect(response).to redirect_to admin_sale_types_path
-      expect(flash[:notice]).to eq "Sale type successfully created"
+    context 'when authenticated as admin' do                    
+      it 'creates a new saletype' do
+        # Sign into this site as admin
+        sign_in create(:admin)
+        # Post to create a new saletype
+        post :create, sale_type: attributes_for(:sale_type)
+        # Expect to redirect to admin_saletypes_path
+        expect(response).to redirect_to admin_sale_types_path
+        # Expect there to be a flash message
+        expect(flash[:notice]).to eq "Sale type successfully created"
+      end
+      it 'tries to create an saletype with existing value' do
+        # create an saletype with value of test
+        saletype = create(:sale_type, value:'test')
+        # Sign into site as admin
+        sign_in create(:admin)
+        # Post to create a new saletype with the same value as already created
+        post :create, sale_type: attributes_for(:sale_type, value: 'test')
+        # Expect the response to render the new template
+        expect(response).to render_template :new
+        # Expect their to be a flash message saying unable to create
+        expect(flash[:alert]).to eq "Unable to create sale type"
+      end   
+      it 'fails to create saletype as value is nil' do
+        # Sign in to the site as admin
+        sign_in create(:admin)
+        # Post to create a new saletype, but sending a nil for value
+        post :create, sale_type: attributes_for(:sale_type, value: nil)
+        # Expect render of new template
+        expect(response).to render_template :new
+        # Expect flash message to say unable to create saletype
+        expect(flash[:alert]).to eq "Unable to create sale type"
+      end       
     end
+    context 'when authenticated as user' do   
+      it 'fails to create a new saletype' do
+        # Sign in as user
+        sign_in create(:user)
+        # Expect posting to create saletype fails as not authorized by pundit
+        expect{post :create, sale_type: attributes_for(:sale_type)}.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end    
   end 
 
   describe 'GET #edit' do
-    it 'renders the :edit template' do
-      sign_in create(:admin)
-      saletype = create(:sale_type)
-      get :edit, id: saletype[:id]
-      expect(response).to render_template :edit      
-    end   
-    it 'fails to renders the :edit template, not found' do
-      sign_in create(:admin)
-      expect{get :edit, id: 9999}.to raise_error(ActiveRecord::RecordNotFound)
-    end     
+    context 'when authenticated as admin' do                        
+      it 'renders the :edit template' do
+        # sign in as admin
+        sign_in create(:admin)
+        # create saletype
+        saletype = create(:sale_type)
+        # Get the edit page
+        get :edit, id: saletype
+        # expect view to render with :edit template
+        expect(response).to render_template :edit  
+      end   
+      it 'fails to renders the :edit template, not found' do
+        # SIgn in as admin
+        sign_in create(:admin)
+        # Try to get a non-existant saletype to edit, should raise an error
+        expect{get :edit, id: 9999}.to raise_error(ActiveRecord::RecordNotFound) 
+      end  
+    end  
+    context 'when authenticated as user' do
+      it 'fails to render the :edit template as not admin' do
+        # Create an saletype        
+        saletype = create(:sale_type)
+        # Login as user
+        sign_in create(:user)
+        # Expect the attempt to execute the edit action to cause a pundit error
+        expect{get :edit, id: saletype}.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end      
   end
 
   describe 'PATCH #update' do
-    it 'updates a sale type' do
-      sign_in create(:admin)
-      saletype = create(:sale_type)
-      patch :update, id: saletype, sale_type: attributes_for(:sale_type, value:'test2')    
-      expect(response).to redirect_to admin_sale_types_path  
-      expect(flash[:notice]).to eq "Sale type successfully updated"      
+    context 'when authenticated as admin' do                            
+      it 'updates a saletype' do
+        # Sign in as admin
+        sign_in create(:admin)
+        # Create a saletype
+        saletype = create(:sale_type)
+        # Attempt to update his saletype with a new value
+        patch :update, id: saletype, sale_type: attributes_for(:sale_type, value:'test2')    
+        # Expect a redirect to admin_saletypes_path
+        expect(response).to redirect_to admin_sale_types_path  
+        # Expect flash message saying updated
+        expect(flash[:notice]).to eq "Sale type successfully updated"  
+      end
+      it 'fails to update a saletype' do
+        # Sign in as admin
+        sign_in create(:admin)
+        # Create an saletype
+        saletype = create(:sale_type)
+        # Attempt to update the saletype, but setting value to nil
+        patch :update, id: saletype, sale_type: attributes_for(:sale_type, value: nil)   
+        # Expect response to render the edit template
+        expect(response).to render_template :edit
+        # Expect flash alert unable to update
+        expect(flash[:alert]).to eq "Unable to update sale type"
+      end
+      it 'fails to update an saletype to existing value' do
+        # Sign in as admin
+        sign_in create(:admin)
+        # Create an age
+        saletype1 = create(:sale_type, value: 'test1')
+        # Create another age
+        saletype2 = create(:sale_type, value: 'test2')
+        # Attempt to update the saletype, but setting value to an existing value
+        patch :update, id: saletype2, sale_type: attributes_for(:sale_type, value: 'test1')   
+        # Expect response to render the edit template
+        expect(response).to render_template :edit
+        # Expect flash alert unable to update
+        expect(flash[:alert]).to eq "Unable to update sale type"
+      end       
     end
+    context 'when authenticated as user' do                
+      it 'fails to update a saletype' do
+        # Create an saletype
+        saletype = create(:sale_type)
+        # Sign in as user
+        sign_in create(:user)
+        # Attempt to update the saletype, but raise pundit error as no permission
+        expect{patch :update, id: saletype, sale_type: attributes_for(:sale_type, value:'test2') }.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end 
   end
 
   describe 'DELETE #destroy' do
-    it 'deletes a sale type' do
-      sign_in create(:admin)
-      saletype = create(:sale_type)
-      expect{delete :destroy, id: saletype}.to change(SaleType, :count).by(-1)
+    context 'when authenticated as admin' do                            
+      it 'deletes a saletype' do
+        # Sign in as admin
+        sign_in create(:admin)
+        # Create an saletype
+        saletype = create(:sale_type)
+        # Delete the frequency and expect the number of saletypes to decrease by 1
+        expect{delete :destroy, id: saletype}.to change(SaleType, :count).by(-1)  
+      end
+      it 'does not delete an saletype, not found' do
+        # Sign in as admin
+        sign_in create(:admin)
+        # Try to delete a non-existing saletype and expect active record error
+        expect{delete :destroy, id: 9999}.to raise_error(ActiveRecord::RecordNotFound)
+      end       
     end
+    context 'when authenticated as user' do
+      it 'fails to delete a saletype' do
+        # Create a saletype
+        saletype = create(:sale_type)
+        # Sign in as a user
+        sign_in create(:user)
+        # Expect delete to fail with pundit authorization error, no permission
+        expect{delete :destroy, id: saletype}.to raise_error(Pundit::NotAuthorizedError)
+      end
+    end      
   end
-
 end

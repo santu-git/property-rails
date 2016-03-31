@@ -28,6 +28,7 @@ class Admin::StylesController < ApplicationController
       flash[:notice] = 'Style successfully created'
       redirect_to admin_styles_path
     else
+      flash[:alert] = 'Unable to create style'            
       render 'new'
     end
   end
@@ -45,10 +46,11 @@ class Admin::StylesController < ApplicationController
     # Check with pundit if the user has permission
     authorize @style
     # Survived so update
-    if @style && @style.update(style_params)
+    if @style.update(style_params)
       flash[:notice] = 'Style successfully updated'
       redirect_to admin_styles_path
     else
+      flash[:alert] = 'Unable to update style'            
       render 'edit'
     end
   end
@@ -58,10 +60,8 @@ class Admin::StylesController < ApplicationController
     # Check with pundit if the user has permission
     authorize @style
     # Survived so destroy
-    if @style && @style.destroy
+    if @style.destroy
       flash[:notice] = 'Style successfully removed'
-    else
-      flash[:alert] = 'Unable to remove style'
     end
     redirect_to admin_styles_path
   end

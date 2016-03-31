@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :agent do
     user
-    name 'Test'
+    sequence(:name) { |n| "test#{n}" }
     status 1
   end
 end

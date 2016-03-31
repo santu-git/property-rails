@@ -2,19 +2,13 @@ class Admin::AssetsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  end
-
-  def json
     # Get assets
     @assets = Asset.belongs_to_current_user(current_user).paginate(
       :page => params[:page],
       :per_page => 10
     )
     # Check with pundit if the user has permission
-    authorize @assets, :json?
-
-    render json: @assets
-
+    authorize @assets    
   end
 
   def new
@@ -34,6 +28,7 @@ class Admin::AssetsController < ApplicationController
       flash[:notice] = 'Asset successfully created'
       redirect_to admin_assets_path
     else
+      flash[:alert] = 'Unable to create asset'
       render 'new'
     end
   end
@@ -55,6 +50,7 @@ class Admin::AssetsController < ApplicationController
       flash[:notice] = 'Asset successfully updated'
       redirect_to admin_assets_path
     else
+      flash[:alert] = 'Unable to update asset'      
       render 'edit'
     end
   end
@@ -67,8 +63,6 @@ class Admin::AssetsController < ApplicationController
     # Survived so destroy
     if @asset && @asset.destroy
       flash[:notice] = 'Asset successfully removed'
-    else
-      flash[:alert] = 'Unable to remove asset'
     end
     redirect_to admin_assets_path
   end

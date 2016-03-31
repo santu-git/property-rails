@@ -18,8 +18,8 @@ describe Availability do
     expect(availability).to be_invalid
   end
   it 'is invalid with a duplicate value' do
-    availability1 = create(:availability)
-    availability2 = build(:availability)
+    availability1 = create(:availability, value: 'test')
+    availability2 = build(:availability, value: 'test')
     expect(availability2).to be_invalid
   end
 end

@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :age do
-    value 'test'
+    sequence(:value) { |n| "test#{n}" }
   end
 end

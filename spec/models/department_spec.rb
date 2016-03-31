@@ -18,8 +18,8 @@ describe Department do
     expect(department).to be_invalid
   end
   it 'is invalid with a duplicate value' do
-    department1 = create(:department)
-    department2 = build(:department)
+    department1 = create(:department, value: 'test')
+    department2 = build(:department, value: 'test')
     expect(department2).to be_invalid
   end
 end

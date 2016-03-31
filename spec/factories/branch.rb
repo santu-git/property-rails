@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :branch do
     agent
-    name 'Branch'
+    sequence(:name) { |n| "test#{n}" }
     address_1 'Address 1'
     town_city 'Town'
     county 'County'

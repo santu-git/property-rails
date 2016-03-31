@@ -165,7 +165,6 @@ Branch.create([{
 Listing.delete_all
 Listing.create([
   id: 1,
-  agent_id: 1,
   branch_id: 1,
   age_id: 1,
   availability_id: 1,

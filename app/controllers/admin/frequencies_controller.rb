@@ -28,6 +28,7 @@ class Admin::FrequenciesController < ApplicationController
       flash[:notice] = 'Frequency successfully created'
       redirect_to admin_frequencies_path
     else
+      flash[:alert] = 'Unable to create frequency'            
       render 'new'
     end
   end
@@ -44,10 +45,11 @@ class Admin::FrequenciesController < ApplicationController
     @frequency = Frequency.find(params[:id])
     # Check with pundit if the user has permission
     authorize @frequency
-    if @frequency && @frequency.update(frequency_params)
+    if @frequency.update(frequency_params)
       flash[:notice] = 'Frequency successfully updated'
       redirect_to admin_frequencies_path
     else
+      flash[:alert] = 'Unable to update frequency'            
       render 'edit'
     end
   end
@@ -58,10 +60,8 @@ class Admin::FrequenciesController < ApplicationController
     # Check with pundit if the user has permission
     authorize @frequency
     # Survived so destroy
-    if @frequency && @frequency.destroy
+    if @frequency.destroy
       flash[:notice] = 'Frequency successfully removed'
-    else
-      flash[:alert] = 'Unable to remove frequency'
     end
     redirect_to admin_frequencies_path
   end

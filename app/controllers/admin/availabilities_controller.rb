@@ -20,6 +20,7 @@ class Admin::AvailabilitiesController < ApplicationController
       flash[:notice] = 'Availability successfully created'
       redirect_to admin_availabilities_path
     else
+      flash[:alert] = 'Unable to create availability'            
       render 'new'
     end
   end
@@ -44,10 +45,11 @@ class Admin::AvailabilitiesController < ApplicationController
     # Check with pundit if the user is admin so has permission
     authorize @availability
     # Survived, so update
-    if @availability && @availability.update(availability_params)
+    if @availability.update(availability_params)
       flash[:notice] = 'Availability successfully updated'
       redirect_to admin_availabilities_path
     else
+      flash[:alert] = 'Unable to update availability'      
       render 'edit'
     end
   end
@@ -58,10 +60,8 @@ class Admin::AvailabilitiesController < ApplicationController
     # Check with pundit if the user is admin so has permission
     authorize @availability
     # Survived so destroy
-    if @availability && @availability.destroy
+    if @availability.destroy
       flash[:notice] = 'Availability successfully removed'
-    else
-      flash[:alert] = 'Unable to remove availability'
     end
     redirect_to admin_availabilities_path
   end

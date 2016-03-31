@@ -16,7 +16,7 @@ class Admin::DepartmentsController < ApplicationController
     @departments = Department.all
     # Check with pundit if the user has permission
     authorize @departments, :json?
-
+    
     render json: @departments
 
   end  
@@ -38,6 +38,7 @@ class Admin::DepartmentsController < ApplicationController
       flash[:notice] = 'Department successfully created'
       redirect_to admin_departments_path
     else
+      flash[:alert] = 'Unable to create department'            
       render 'new'
     end
   end
@@ -55,10 +56,11 @@ class Admin::DepartmentsController < ApplicationController
     # Check with pundit if the user has permission
     authorize @department
     # Survived so update
-    if @department && @department.update(department_params)
+    if @department.update(department_params)
       flash[:notice] = 'Department successfully updated'
       redirect_to admin_departments_path
     else
+      flash[:alert] = 'Unable to update department'            
       render 'edit'
     end
   end
@@ -69,10 +71,8 @@ class Admin::DepartmentsController < ApplicationController
     # Check with pundit if the user has permission
     authorize @department
     # Survived so destroy
-    if @department && @department.destroy
+    if @department.destroy
       flash[:notice] = 'Departmnt successfully removed'
-    else
-      flash[:alert] = 'Unable to remove department'
     end
     redirect_to admin_departments_path
   end

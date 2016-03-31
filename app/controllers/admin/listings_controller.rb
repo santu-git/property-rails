@@ -21,33 +21,41 @@ class Admin::ListingsController < ApplicationController
       flash[:notice] = 'Listing successfully created'
       redirect_to admin_listings_path
     else
+      flash[:alert] = 'Unable to create listing'      
       render 'new'
     end
   end
 
   def edit
-    @listing = Listing.belongs_to_current_user(current_user).find(params[:id])
-    authorize @listing
+    @listing = Listing.joins_with_branch(params[:id]).first
+    if (@listing)
+      authorize @listing
+      respond_to do |format|
+       format.html {}
+       format.json {render json: @listing}
+      end
+    else
+      raise ActiveRecord::RecordNotFound  
+    end    
   end
 
   def update
-    @listing = Listing.belongs_to_current_user(current_user).find(params[:id])
+    @listing = Listing.find(params[:id])
     authorize @listing
-    if @listing && @listing.update(listing_params)
+    if @listing.update(listing_params)
       flash[:notice] = 'Listing successfully updated'
       redirect_to admin_listings_path
     else
+      flash[:alert] = 'Unable to update listing'            
       render 'edit'
     end
   end
 
   def destroy
-    @listing = Listing.belongs_to_current_user(current_user).find(params[:id])
+    @listing = Listing.find(params[:id])
     authorize @listing
-    if @listing && @listing.destroy
+    if @listing.destroy
       flash[:notice] = 'Listing successfully removed'
-    else
-      flash[:alert] = 'Unable to remove listing'
     end
     redirect_to admin_listings_path
   end
@@ -55,7 +63,7 @@ class Admin::ListingsController < ApplicationController
   private
     def listing_params
       params.require(:listing).permit(
-        :agent_id, :branch_id, :age_id, :availability_id, :department_id,
+        :branch_id, :age_id, :availability_id, :department_id,
         :frequency_id, :qualifier_id, :sale_type_id, :style_id, :tenure_id,
         :type_id, :address_1, :address_2, :address_3, :address_4, :town_city,
         :county, :postcode, :country, :latitude, :longitude, :display_address,

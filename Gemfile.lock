@@ -138,7 +138,7 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
-    paperclip (4.3.3)
+    paperclip (4.3.6)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
@@ -266,7 +266,7 @@ DEPENDENCIES
   jquery-rails
   mysql2 (>= 0.3.13, < 0.5)
   nilify_blanks
-  paperclip
+  paperclip (~> 4.3.5)
   passenger
   pundit
   rails (= 4.2.5)

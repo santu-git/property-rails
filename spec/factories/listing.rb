@@ -23,17 +23,17 @@ FactoryGirl.define do
     featured false
     status 1
     factory :letting_listing do
-      department{create(:department, id: 2, value: 'letting')}
+      department
       frequency
       rent 100
       rent_on_application false
       student false
     end
     factory :sale_listing do
-      department{create(:department, id: 1, value: 'sale')}
-      qualifier
-      sale_type
-      tenure
+      department{create(:department, id: 1)}
+      qualifier{create(:qualifier)}
+      sale_type{create(:sale_type)}
+      tenure{create(:tenure)}
       price_on_application false
       development false
       investment false

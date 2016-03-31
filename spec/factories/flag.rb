@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :flag do
     listing{ build(:listing, department: build(:department)) }
-    value 'test'
+    sequence(:value) { |n| "test#{n}" }
   end
 end

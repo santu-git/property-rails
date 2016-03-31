@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :department do
-    value 'sale'
+    sequence(:value) { |n| "test#{n}" }
   end
 end

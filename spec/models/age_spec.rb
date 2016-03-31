@@ -18,8 +18,8 @@ describe Age do
     expect(age).to be_invalid
   end
   it 'is invalid with a duplicate value' do
-    age1 = create(:age)
-    age2 = build(:age)
+    age1 = create(:age, value: 'test')
+    age2 = build(:age, value: 'test')
     expect(age2).to be_invalid
   end
 end
