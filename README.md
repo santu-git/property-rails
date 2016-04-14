@@ -7,3 +7,5 @@ Rails 4.2.5
 ImageMagick
 
 Uses some AngularJS
+
+Setup for Heroku
