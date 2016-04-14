@@ -11,6 +11,8 @@
     return factory;
 
   };
+  
+  ListingsFactory.$inject = ['$http'];
 
   angular.module('everystreet').factory('listingsFactory', ListingsFactory);
 

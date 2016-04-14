@@ -12,6 +12,8 @@
 
   };
 
+  DepartmentsFactory.$inject = ['$http'];
+
   angular.module('everystreet').factory('departmentsFactory', DepartmentsFactory);
 
 }());
