@@ -43,7 +43,8 @@ MediaType.create([
   {id: 1, value: 'Image'},
   {id: 2, value: 'EPC'},
   {id: 3, value: 'Floorplan'},
-  {id: 4, value: 'Tours'}
+  {id: 4, value: 'Tours'},
+  {id: 5, value: 'Brochure'}
 ])
 Qualifier.delete_all
 Qualifier.create([

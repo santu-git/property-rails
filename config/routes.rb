@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     resources :branches
     resources :listings
     resources :assets
+    resources :users, only: [:index], path: 'user'
+    post 'users/token', path: 'user/token'
   end
 
   devise_for :users,

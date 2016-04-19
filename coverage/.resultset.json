@@ -1,9 +1,9 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/rcoster/Rails/everystreet/app/models/user.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/user.rb": [
         1,
-        1,
+        null,
         null,
         null,
         1,
@@ -17,70 +17,65 @@
         142,
         null,
         null,
-        1,
-        1,
-        285,
-        null,
-        null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/agents_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/agents_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/assets_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/assets_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/availabilities_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/availabilities_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/branches_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/branches_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/dashboard_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/dashboard_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/departments_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/departments_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/frequencies_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/frequencies_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/listings_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/listings_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/media_types_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/media_types_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/qualifiers_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/qualifiers_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/sale_types_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/sale_types_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/styles_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/styles_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/tenures_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/tenures_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/admin/types_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/admin/types_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/application_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/application_helper.rb": [
         1,
         1,
         2,
@@ -108,11 +103,11 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/helpers/home_helper.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/helpers/home_helper.rb": [
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/ages_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/ages_controller.rb": [
         1,
         1,
         null,
@@ -189,7 +184,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/application_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/application_controller.rb": [
         1,
         1,
         null,
@@ -198,7 +193,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/agents_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/agents_controller.rb": [
         1,
         1,
         null,
@@ -267,83 +262,6 @@
         null,
         null,
         1,
-        2,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
-        4,
-        null,
-        null,
-        null
-      ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/assets_controller.rb": [
-        1,
-        1,
-        null,
-        1,
-        null,
-        2,
-        null,
-        null,
-        null,
-        null,
-        2,
-        null,
-        null,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        null,
-        2,
-        null,
-        2,
-        null,
-        2,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        null,
-        2,
-        null,
-        1,
-        null,
-        null,
-        1,
-        null,
-        2,
-        null,
-        2,
-        null,
-        2,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        null,
         2,
         null,
         1,
@@ -361,7 +279,84 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/availabilities_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/assets_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        2,
+        null,
+        null,
+        null,
+        null,
+        2,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        2,
+        null,
+        2,
+        null,
+        2,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        2,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        2,
+        null,
+        2,
+        null,
+        2,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        2,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        1,
+        4,
+        null,
+        null,
+        null
+      ],
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/availabilities_controller.rb": [
         1,
         1,
         null,
@@ -437,7 +432,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/branches_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/branches_controller.rb": [
         1,
         1,
         null,
@@ -527,7 +522,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/departments_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/departments_controller.rb": [
         1,
         1,
         null,
@@ -614,7 +609,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/frequencies_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/frequencies_controller.rb": [
         1,
         1,
         null,
@@ -689,7 +684,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/listings_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/listings_controller.rb": [
         1,
         1,
         null,
@@ -769,7 +764,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/media_types_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/media_types_controller.rb": [
         1,
         1,
         null,
@@ -845,7 +840,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/qualifiers_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/qualifiers_controller.rb": [
         1,
         1,
         null,
@@ -920,7 +915,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/sale_types_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/sale_types_controller.rb": [
         1,
         1,
         null,
@@ -995,7 +990,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/styles_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/styles_controller.rb": [
         1,
         1,
         null,
@@ -1070,7 +1065,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/tenures_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/tenures_controller.rb": [
         1,
         1,
         null,
@@ -1146,7 +1141,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/types_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/types_controller.rb": [
         1,
         1,
         null,
@@ -1221,7 +1216,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/age.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/age.rb": [
         1,
         null,
         1,
@@ -1229,7 +1224,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/agent.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/agent.rb": [
         1,
         null,
         1,
@@ -1247,7 +1242,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/availability.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/availability.rb": [
         1,
         null,
         1,
@@ -1255,7 +1250,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/branch.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/branch.rb": [
         1,
         null,
         1,
@@ -1292,31 +1287,15 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/ckeditor/asset.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/ckeditor/asset.rb": [
         1,
         1,
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/ckeditor/attachment_file.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/ckeditor/attachment_file.rb": [
         1,
         1,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/Users/rcoster/Rails/everystreet/app/models/ckeditor/picture.rb": [
-        1,
-        1,
-        null,
         null,
         null,
         null,
@@ -1329,7 +1308,23 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/department.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/ckeditor/picture.rb": [
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/rcoster/Heroku/everystreet/app/models/department.rb": [
         1,
         null,
         1,
@@ -1337,7 +1332,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/feature.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/feature.rb": [
         1,
         null,
         1,
@@ -1346,7 +1341,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/flag.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/flag.rb": [
         1,
         null,
         1,
@@ -1355,7 +1350,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/frequency.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/frequency.rb": [
         1,
         null,
         1,
@@ -1363,7 +1358,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/listing.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/listing.rb": [
         1,
         null,
         1,
@@ -1459,7 +1454,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/media_type.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/media_type.rb": [
         1,
         null,
         1,
@@ -1467,7 +1462,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/qualifier.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/qualifier.rb": [
         1,
         null,
         1,
@@ -1475,7 +1470,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/sale_type.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/sale_type.rb": [
         1,
         null,
         1,
@@ -1483,7 +1478,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/style.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/style.rb": [
         1,
         null,
         1,
@@ -1491,7 +1486,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/tenure.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/tenure.rb": [
         1,
         null,
         1,
@@ -1499,7 +1494,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/type.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/type.rb": [
         1,
         null,
         1,
@@ -1507,7 +1502,7 @@
         1,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/age_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/age_policy.rb": [
         1,
         null,
         1,
@@ -1529,7 +1524,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/application_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/application_policy.rb": [
         1,
         1,
         null,
@@ -1584,7 +1579,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/agent_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/agent_policy.rb": [
         1,
         null,
         1,
@@ -1613,7 +1608,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/models/asset.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/models/asset.rb": [
         1,
         null,
         1,
@@ -1630,7 +1625,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/asset_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/asset_policy.rb": [
         1,
         null,
         1,
@@ -1659,7 +1654,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/availability_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/availability_policy.rb": [
         1,
         null,
         1,
@@ -1681,7 +1676,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/branch_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/branch_policy.rb": [
         1,
         null,
         1,
@@ -1721,7 +1716,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/department_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/department_policy.rb": [
         1,
         null,
         1,
@@ -1747,7 +1742,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/frequency_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/frequency_policy.rb": [
         1,
         null,
         1,
@@ -1769,7 +1764,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/listing_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/listing_policy.rb": [
         1,
         null,
         1,
@@ -1799,7 +1794,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/media_type_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/media_type_policy.rb": [
         1,
         null,
         1,
@@ -1821,7 +1816,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/qualifier_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/qualifier_policy.rb": [
         1,
         null,
         1,
@@ -1843,7 +1838,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/sale_type_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/sale_type_policy.rb": [
         1,
         null,
         1,
@@ -1865,7 +1860,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/style_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/style_policy.rb": [
         1,
         null,
         1,
@@ -1887,7 +1882,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/tenure_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/tenure_policy.rb": [
         1,
         null,
         1,
@@ -1909,7 +1904,7 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/policies/type_policy.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/policies/type_policy.rb": [
         1,
         null,
         1,
@@ -1931,13 +1926,13 @@
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/home_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/home_controller.rb": [
         1,
         1,
         null,
         null
       ],
-      "/Users/rcoster/Rails/everystreet/app/controllers/admin/dashboard_controller.rb": [
+      "/Users/rcoster/Heroku/everystreet/app/controllers/admin/dashboard_controller.rb": [
         1,
         1,
         1,
@@ -1945,6 +1940,6 @@
         null
       ]
     },
-    "timestamp": 1459420801
+    "timestamp": 1460909631
   }
 }
